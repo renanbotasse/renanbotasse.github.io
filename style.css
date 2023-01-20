@@ -91,3 +91,9 @@
 .text-center > a:hover {
     background-color: #660000;
 }
+
+img.card-img-top {
+    height: 300px;
+    width: 600px;
+
+}
