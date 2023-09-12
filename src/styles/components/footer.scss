@@ -1,0 +1,28 @@
+@import '../main.scss';
+
+.footer{
+  display: flex;
+  align-items: center;
+  color: $color-white;
+  font-weight: bolder;
+  font-size: large;
+  letter-spacing: 1px;
+  padding: 0 0 2.5% 10%;
+
+  & p {
+    font-weight: bolder;
+  }
+
+  @include respond(tab-land) {
+    font-size: 1.5rem;
+    font-weight: bolder;  
+  }
+
+  @include respond(phone) {
+    display: none;
+  }
+
+  &-text {
+    margin: 0 0 0 .9%;
+  }
+}
