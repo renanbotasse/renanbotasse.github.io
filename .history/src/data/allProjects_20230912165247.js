@@ -20,7 +20,7 @@ const allProjects = [
     name: 'E-commerce - RetroX',
     img: imgretroX,
     linkGitHub: 'https://github.com/renanbotasse/retroX-mvp',
-    linkPage: 'https://github.com/renanbotasse/retroX-mvp',
+    linkPage: 'https://github.com/renanbotasse/retroz',
   },
   
   {
