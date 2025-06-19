@@ -1,8 +1,10 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  compiler: {
-    styledComponents: true,
+  output: 'export', // habilita next export
+  images: {
+    unoptimized: true, // necessário se você estiver usando <Image /> do next/image
   },
-  output: 'export',
+  trailingSlash: true, // recomendado para exportações estáticas
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;

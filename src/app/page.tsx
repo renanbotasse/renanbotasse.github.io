@@ -49,16 +49,6 @@ const Logo = styled(motion.div)`
   cursor: pointer;
 `;
 
-const Nav = styled.nav`
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
 const NavItem = styled(motion.button)`
   background: none;
   border: none;
@@ -105,59 +95,6 @@ const Dot = styled.span`
 const Underscore = styled.span`
   color: white;
   animation: ${blink} 1s step-start infinite;
-`;
-
-const MobileMenuButton = styled.button`
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  
-  @media (max-width: 768px) {
-    display: block;
-  }
-`;
-
-const MobileMenu = styled(motion.div)`
-  position: fixed;
-  top: 80px;
-  left: 0;
-  right: 0;
-  background: black;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #333;
-  padding: 20px 24px;
-  display: none;
-  
-  @media (max-width: 768px) {
-    display: block;
-  }
-`;
-
-const MobileNavItem = styled.button`
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 12px 0;
-  font-family: 'Fira Mono', monospace;
-  
-  &::before {
-    content: '// ';
-    color: #03bfa6;
-    margin-right: 8px;
-  }
-  
-  &:hover {
-    color: #03bfa6;
-  }
 `;
 
 const Hero = styled.section`
