@@ -31,8 +31,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background: red;
-    color: red;
+    background: #03bfa6;
+    color: white;
   }
 
   ::-webkit-scrollbar {
@@ -50,6 +50,10 @@ const GlobalStyle = createGlobalStyle`
 
   ::-webkit-scrollbar-thumb:hover {
     background: #03bfa6;
+  }
+
+  html, body, *, *:before, *:after {
+    box-sizing: border-box;
   }
 `;
 
