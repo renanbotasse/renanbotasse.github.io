@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // habilita next export
+  output: 'export',
+  trailingSlash: true,
+  basePath: '/renanbotasse.github.io',
+  assetPrefix: '/renanbotasse.github.io/',
   images: {
-    unoptimized: true, // necessário se você estiver usando <Image /> do next/image
-  },
-  trailingSlash: true, // recomendado para exportações estáticas
+    unoptimized: true
+  }
 };
 
 module.exports = nextConfig;

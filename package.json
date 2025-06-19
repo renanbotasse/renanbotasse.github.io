@@ -2,9 +2,11 @@
   "name": "renanbotasse.github.io",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://renanbotasse.github.io",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "export": "next export",
     "deploy": "gh-pages -d out",
     "start": "next start",
     "lint": "next lint"
