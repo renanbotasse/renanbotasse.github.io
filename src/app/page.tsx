@@ -1,8 +1,9 @@
 "use client";
-import styled from 'styled-components';
-import { FaServer, FaCubes, FaDatabase, FaTools, FaReact, FaFileAlt, FaArrowRight, FaMapMarkerAlt, FaExternalLinkAlt, FaBuilding, FaGithub, FaLinkedin, FaHackerrank, FaEnvelope } from 'react-icons/fa';
+import styled, { keyframes } from 'styled-components';
+import { FaCloudDownloadAlt, FaServer, FaMobileAlt, FaDatabase, FaTools, FaReact, FaFileAlt, FaArrowRight, FaMapMarkerAlt, FaExternalLinkAlt, FaBuilding, FaGithub, FaLinkedin, FaHackerrank, FaEnvelope } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { RotatingPhone3D } from '@/components/RotatingPhone';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -12,7 +13,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Header = styled(motion.header)<{ scrolled: boolean }>`
+const Header = styled(motion.header) <{ scrolled: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -37,7 +38,7 @@ const HeaderContent = styled.div`
 const Logo = styled(motion.div)`
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.primary};
+  color: #c8d1d9;
   font-family: 'Fira Mono', monospace;
   cursor: pointer;
 `;
@@ -64,24 +65,40 @@ const NavItem = styled(motion.button)`
   font-family: 'Fira Mono', monospace;
   
   &::before {
-    content: '// ';
+    content: '/ ';
+    font-size: 1.5rem;
     color: ${({ theme }) => theme.colors.primary};
-    margin-right: 8px;
+    margin-right: -14px;
   }
   
   &::after {
     content: attr(data-number);
     position: absolute;
-    top: -8px;
-    right: -12px;
-    font-size: 0.7rem;
-    color: ${({ theme }) => theme.colors.secondary};
+    top: -2px;
+    right: -15px;
+    font-size: 0.9rem;
     opacity: 0.7;
   }
   
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }
+`;
+
+
+const blink = keyframes`
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+`;
+
+
+const Dot = styled.span`
+  color: red;
+`;
+
+const Underscore = styled.span`
+  color: white;
+  animation: ${blink} 1s step-start infinite;
 `;
 
 const MobileMenuButton = styled.button`
@@ -149,13 +166,23 @@ const Hero = styled.section`
   overflow: hidden;
 `;
 
-const HeroBackground = styled.div`
+export const HeroVideoBackground = styled.video`
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 20%, ${({ theme }) => theme.colors.primary}15 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, ${({ theme }) => theme.colors.secondary}15 0%, transparent 50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.3; /* ou ajuste conforme quiser */
+  pointer-events: none;
 `;
 
+// const HeroBackground = styled.div`
+//   position: absolute;
+//   inset: 0;
+//   background: radial-gradient(circle at 30% 20%, ${({ theme }) => theme.colors.primary}15 0%, transparent 50%),
+//               radial-gradient(circle at 70% 80%, ${({ theme }) => theme.colors.secondary}15 0%, transparent 50%);
+// `;
 const HeroContent = styled(motion.div)`
   position: relative;
   z-index: 2;
@@ -165,10 +192,11 @@ const HeroContent = styled(motion.div)`
 const HeroName = styled(motion.h1)`
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+  letter-spacing: 3px;
+  margin-bottom: 0rem;
   color: #fff;
   text-transform: uppercase;
+  font-family: 'DM Sans', monospace;
 `;
 
 const HeroTitle = styled(motion.h2)`
@@ -178,6 +206,28 @@ const HeroTitle = styled(motion.h2)`
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+`;
+
+const techColors = {
+  react: '#61DAFB',
+  node: '#3C873A',
+  ts: '#3178C6',
+  aws: '#FF9900'
+};
+
+interface TechProps {
+  tech: keyof typeof techColors;
+}
+
+export const TechItem = styled.span<TechProps>`
+  cursor: default;
+  padding: 0 0.25rem;
+  transition: color 0.3s ease;
+  color: ${({ theme }) => theme.colors.primary}; // cor original
+
+  &:hover {
+    color: ${({ tech }) => techColors[tech]};
+  }
 `;
 
 const HeroSubtitle = styled(motion.div)`
@@ -230,7 +280,8 @@ const SectionTitle = styled(motion.h2)`
   text-align: center;
   margin-bottom: 60px;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: 8px;
+  font-family: 'DM Sans', monospace;
 `;
 
 const ExpertiseGrid = styled.div`
@@ -246,24 +297,17 @@ const ExpertiseGrid = styled.div`
   }
 `;
 
-const ExpertiseCard = styled(motion.div)<{ borderColor: string }>`
+const ExpertiseCard = styled(motion.div) <{ borderColor: string }>`
   padding: 40px 30px;
   border-right: 2px solid #333;
   border-bottom: 2px solid #333;
   transition: background 0.3s ease;
   
   &:hover {
-    background: #1a1f26;
+    background: black;
   }
-  
-  &:nth-child(3n) {
-    border-right: none;
-  }
-  
-  &:nth-last-child(-n+3) {
-    border-bottom: none;
-  }
-  
+
+
   @media (max-width: 768px) {
     border-right: none;
     
@@ -272,9 +316,16 @@ const ExpertiseCard = styled(motion.div)<{ borderColor: string }>`
     }
   }
 `;
+const ExpertiseCardHead = styled(motion.div) <{ borderColor: string }>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+`;
 
 const ExpertiseIcon = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   font-size: 2.5rem;
 `;
 
@@ -285,6 +336,7 @@ const ExpertiseTitle = styled.h3<{ underlineColor: string }>`
   margin-bottom: 15px;
   position: relative;
   display: inline-block;
+  margin-left: 3px;
   
   &::after {
     content: '';
@@ -306,33 +358,38 @@ const ExpertiseDesc = styled.p`
 `;
 
 const WorkSection = styled(Section)`
-  background: #0a0e13;
+  background: black;
   max-width: none;
   padding: 100px 0;
 `;
 
 const MyWorkWrapper = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* muda de flex-start para center */
   justify-content: space-between;
-  gap: 40px;
+  gap: 80px; /* aumenta o espaçamento entre texto e celular */
   max-width: 1200px;
-  margin: 0 auto 80px auto;
+  margin: 0 auto 100px auto;
   padding: 0 24px;
+
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: 40px;
   }
 `;
 
+
 const MyWorkLeft = styled.div`
   flex: 1;
-  min-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  margin-right: 80px;
 `;
+
 
 const MyWorkTitle = styled.h2`
   font-size: 4rem;
@@ -341,6 +398,7 @@ const MyWorkTitle = styled.h2`
   margin-bottom: 32px;
   text-align: left;
   line-height: 1;
+  font-family: 'DM Sans', monospace;
 `;
 
 const MyWorkDesc = styled.p`
@@ -354,98 +412,25 @@ const MyWorkDesc = styled.p`
 
 const MyWorkRight = styled.div`
   flex: 1;
-  min-width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-`;
-
-const MyWorkMockup = styled.div`
-  width: 320px;
-  height: 600px;
-  background: #23272f;
-  border-radius: 36px;
-  box-shadow: 0 10px 40px #0007;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0;
-  transform: rotate(-15deg) skewY(-2deg);
-  position: relative;
-  z-index: 2;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  @media (max-width: 600px) {
-    width: 220px;
-    height: 400px;
-  }
-`;
+  min-width: 420px;
+  margin-left: 10px;
 
-const CurvedArrow = styled.svg`
-  position: absolute;
-  left: -120px;
-  top: 60px;
-  width: 180px;
-  height: 120px;
-  z-index: 1;
   @media (max-width: 900px) {
-    left: 0;
-    top: 0;
-    width: 120px;
-    height: 80px;
-  }
-`;
-
-const FeaturedBox = styled.div`
-  margin-top: 32px;
-  background: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const FeaturedLabel = styled.div`
-  color: ${({ theme }) => theme.colors.primary};
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  text-align: center;
-`;
-
-const FeaturedName = styled.h3`
-  font-size: 2rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.5rem;
-  text-align: center;
-`;
-
-const FeaturedButton = styled.a`
-  display: inline-block;
-  background: ${({ theme }) => theme.colors.secondary};
-  color: #fff;
-  font-weight: 600;
-  padding: 12px 32px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 1.1rem;
-  margin-top: 16px;
-  transition: background 0.2s, transform 0.2s;
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary};
-    transform: translateY(-2px);
+    justify-content: center;
   }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 100px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  justify-items: center;
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -453,11 +438,11 @@ const ProjectCard = styled(motion.div)`
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid #333;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -619,7 +604,7 @@ const ExperienceLogo = styled.div`
 const Footer = styled.footer`
   background: #161b22;
   border-top: 2px solid #333;
-  padding: 60px 0 40px 0;
+  padding: 10px 0 10px 0;
   text-align: center;
 `;
 
@@ -634,10 +619,9 @@ const ContactTitle = styled.h3`
 
 const ContactEmail = styled.a`
   color: ${({ theme }) => theme.colors.primary};
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
-  margin-bottom: 30px;
   display: inline-block;
   font-family: 'Fira Mono', monospace;
   
@@ -650,7 +634,7 @@ const SocialIcons = styled.div`
   display: flex;
   justify-content: center;
   gap: 30px;
-  margin-bottom: 30px;
+
 `;
 
 const SocialLink = styled(motion.a)`
@@ -669,105 +653,138 @@ const FooterNote = styled.div`
   margin-top: 20px;
 `;
 
-const expertiseData = [
-  {
-    icon: <FaServer size={40} color="#00BFA6" />,
-    title: 'Backend com NestJS e Node.js',
-    underline: '#00BFA6',
-    desc: 'APIs RESTful, microsserviços, BFF, DDD, testes automatizados.'
-  },
-  {
-    icon: <FaCubes size={40} color="#7F5AF0" />,
-    title: 'Arquiteturas escaláveis',
-    underline: '#7F5AF0',
-    desc: 'Projetos com DDD, microsserviços, integrações e escalabilidade.'
-  },
-  {
-    icon: <FaDatabase size={40} color="#C9D1D9" />,
-    title: 'Banco de dados',
-    underline: '#C9D1D9',
-    desc: 'SQL (PostgreSQL), NoSQL (MongoDB), modelagem e otimização.'
-  },
-  {
-    icon: <FaTools size={40} color="#00BFA6" />,
-    title: 'CI/CD e Cloud',
-    underline: '#00BFA6',
-    desc: 'GitHub Actions, Docker, AWS, deploy automatizado.'
-  },
-  {
-    icon: <FaReact size={40} color="#7F5AF0" />,
-    title: 'Frontend & Mobile',
-    underline: '#7F5AF0',
-    desc: 'React, React Native, interfaces modernas e responsivas.'
-  },
-  {
-    icon: <FaFileAlt size={40} color="#C9D1D9" />,
-    title: 'Documentação técnica',
-    underline: '#C9D1D9',
-    desc: 'Swagger, Notion, Confluence, documentação clara e útil.'
-  },
-];
+const expertiseData =
+  [
+    {
+      icon: <FaReact size={40} color="#61DAFB" />,
+      title: 'FRONTEND',
+      underline: '#61DAFB',
+      desc: 'React, TypeScript, responsive UI, design systems.',
+    },
+    {
+      icon: <FaServer size={40} color="#3C873A" />,
+      title: 'BACKEND',
+      underline: '#3C873A',
+      desc: 'Node.js, NestJS, REST APIs, DDD, testing.',
+    },
+    {
+      icon: <FaMobileAlt size={40} color="#8E44AD" />,
+      title: 'MOBILE',
+      underline: '#8E44AD',
+      desc: 'React Native, hybrid apps, UI/UX focus.',
+    },
+    {
+      icon: <FaDatabase size={40} color="#C9D1D9" />,
+      title: 'DATABASES',
+      underline: '#C9D1D9',
+      desc: 'PostgreSQL, MongoDB, schema design, Elasticsearch.',
+    },
+    {
+      icon: <FaCloudDownloadAlt size={40} color="#FF9900" />,
+      title: 'CLOUD & CI/CD',
+      underline: '#FF9900',
+      desc: 'AWS, Docker, GitHub Actions, automated deploys.',
+    },
+    {
+      icon: <FaFileAlt size={40} color="#FF6B6B" />,
+      title: 'DOCUMENTATION',
+      underline: '#FF6B6B',
+      desc: 'Jira, Confluence, clear specs, planning, Swagger, Notion.'
+    },
+  ];
 
-const projects = [
-  {
-    name: "HabitFlow API",
-    desc: "API de rastreamento de hábitos com NestJS, DDD, PostgreSQL e Swagger.",
-    type: "Real",
-    image: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400",
-    link: "#",
-  },
-  {
-    name: "JobTrello",
-    desc: "Gerenciador de candidaturas estilo Trello com React, drag-and-drop e persistência local.",
-    type: "Real",
-    image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400",
-    link: "#",
-  },
-  {
-    name: "API de gestão financeira pessoal",
-    desc: "Controle de gastos e orçamentos com autenticação, múltiplas carteiras e dashboard de insights.",
-    type: "Fictício",
-    image: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=400",
-    link: "#",
-  },
-  {
-    name: "DashTech",
-    desc: "Painel de analytics com gráficos interativos usando React, TanStack Table e consumo de API.",
-    type: "Fictício",
-    image: "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=400",
-    link: "#",
-  },
-];
+  const projects = [
+    {
+      name: "Just To-Day",
+      desc: "Daily task list built with React. Editable blocks, color customization, and automatic rollover using browser cache.",
+      type: "React",
+      image: "/img/to-day.png",
+      link: "#",
+    },
+    {
+      name: "JobFlow",
+      desc: "Kanban board to manage job applications using React, with drag-and-drop and persistent data in localStorage.",
+      type: "React",
+      image: "/img/jobFlow.png",
+      link: "#",
+    },
+    {
+      name: "MyChain API",
+      desc: "Habit-tracking REST API built with NestJS, DDD, and PostgreSQL. Tracks user activity.",
+      type: "NestJS",
+      image: "/img/mychain.png",
+      link: "#",
+    }
+  ];
+  
+  
 
-const experienceData = [
-  {
-    company: '2Lar',
-    role: 'Tech Lead & Fullstack Developer',
-    period: '2022 - Presente',
-    location: 'São Paulo, Brasil',
-    site: 'https://2lar.com.br',
-    description: 'Liderança técnica e desenvolvimento fullstack de plataforma de gestão de condomínios, integrações com APIs, arquitetura escalável, automação de processos e experiência do usuário.',
-    tags: ['Node.js', 'React', 'AWS', 'Arquitetura', 'Liderança'],
-  },
-  {
-    company: 'Go Hike',
-    role: 'Backend Developer',
-    period: '2020 - 2022',
-    location: 'Remoto',
-    site: 'https://gohike.com',
-    description: 'Desenvolvimento de APIs para app de trilhas, autenticação, integração com mapas e notificações.',
-    tags: ['Node.js', 'NestJS', 'PostgreSQL', 'APIs'],
-  },
-  {
-    company: 'FDTE',
-    role: 'Desenvolvedor Fullstack',
-    period: '2018 - 2020',
-    location: 'São Paulo, Brasil',
-    site: 'https://fdte.org.br',
-    description: 'Projetos de inovação, desenvolvimento web, integrações e suporte a times multidisciplinares.',
-    tags: ['React', 'Node.js', 'Inovação'],
-  },
-];
+  const experienceData = [
+    {
+      company: '2Lar',
+      role: 'Fullstack Developer - Mid',
+      period: '2024 - Now',
+      location: 'São Paulo, Brazil · Remote',
+      site: 'https://2lar.com.br',
+      description:
+        'From frontend to fullstack transition during platform rebuild. Worked with React, Node.js, microservices, AWS, and Elasticsearch across 4 modular products.',
+      tags: ['React', 'Node.js', 'TypeScript', 'AWS', 'Elasticsearch'],
+    },
+    {
+      company: 'Go Hike',
+      role: 'Mobile Developer - Junior',
+      period: '2023 - 2024',
+      location: 'Guimarães, Portugal · Remote',
+      site: 'https://gohike.com',
+      description:
+        'Built React Native app with Expo and NestJS API. Worked on authentication, event tracking, forms, and DDD-based architecture.',
+      tags: ['React Native', 'NestJS', 'TypeScript', 'PostgreSQL', 'DDD'],
+    },
+    {
+      company: 'FDTE',
+      role: 'Software Developer - Trainee',
+      period: '2023',
+      location: 'São Paulo, Brazil · Remote',
+      site: 'https://fdte.org.br',
+      description:
+        'Worked on BPMN-based systems and backend integrations. Modeled APIs with GraphQL, Postman, and contributed to e-commerce code reviews.',
+      tags: ['Node.js', 'GraphQL', 'Postman', 'BPMN', 'Confluence'],
+    },
+  ];
+  
+
+const RotatingPhone = styled.div`
+  width: 320px;
+  height: 600px;
+  border-radius: 36px;
+  background: #111;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  animation: rotateY 10s linear infinite;
+
+  @keyframes rotateY {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  @media (max-width: 600px) {
+    width: 220px;
+    height: 400px;
+  }
+`;
+
+const PhoneScreen = styled.div`
+  width: 100%;
+  height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -793,10 +810,46 @@ export default function Home() {
   const navItems = [
     { id: 'home', label: 'home', number: '01' },
     { id: 'expertise', label: 'expertise', number: '02' },
-    { id: 'work', label: 'work', number: '03' },
-    { id: 'experience', label: 'experience', number: '04' },
-    { id: 'contact', label: 'contact', number: '05' },
+    { id: 'projects', label: 'projects', number: '03' },
+    { id: 'work', label: 'work', number: '04' },
   ];
+
+  const carouselImages = [
+    '/img/2lar-home.png',
+    '/img/2lar-filters.png',
+    '/img/2lar-property.png'
+  ];
+  
+  const [currentImage, setCurrentImage] = useState(0);
+  
+  const PhoneMockup = styled.div`
+  width: 320px;
+  height: 660px;
+  background-image: url('/img/iphone-mockup.png'); /* mockup com tela vazia */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transform: rotate(-20deg) skewY(-2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+`;
+
+const ScreenOverlay = styled.img`
+  position: absolute;
+  top: 50px;
+  left: 25px;
+  width: 270px;
+  height: 560px;
+  object-fit: cover;
+  border-radius: 24px;
+`;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % carouselImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+  
 
   return (
     <Container>
@@ -807,13 +860,11 @@ export default function Home() {
         transition={{ duration: 0.6 }}
       >
         <HeaderContent>
-          <Logo
-            whileHover={{ scale: 1.05 }}
-            onClick={() => scrollToSection('home')}
-          >
-            RenanBotasse._
+          <Logo whileHover={{ scale: 1.05 }} onClick={() => scrollToSection('home')}>
+            Renan<Dot></Dot><Underscore>_</Underscore>
           </Logo>
-          
+
+
           <Nav>
             {navItems.map((item) => (
               <NavItem
@@ -854,7 +905,14 @@ export default function Home() {
       </Header>
 
       <Hero id="home">
-        <HeroBackground />
+        {/* <HeroBackground /> */}
+        <HeroVideoBackground
+          autoPlay
+          muted
+          loop
+          playsInline
+          src="/vecteezy_polygon-cyberpunk-sci-fi-background_1807028.mp4"
+        />
         <HeroContent
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -872,17 +930,17 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Software Engineer, Fullstack & Backend Developer.
+            Fullstack Developer
           </HeroTitle>
           <HeroSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            | React • Node.js • TypeScript • AWS |
+            | <TechItem tech="react">React</TechItem> • <TechItem tech="node">Node.js</TechItem> • <TechItem tech="ts">TypeScript</TechItem> • <TechItem tech="aws">AWS</TechItem> |
           </HeroSubtitle>
         </HeroContent>
-        
+
         <ScrollIndicator
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
@@ -896,9 +954,9 @@ export default function Home() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          My Expertise
+          Expertise
         </SectionTitle>
-        
+
         <ExpertiseGrid>
           {expertiseData.map((item, idx) => (
             <ExpertiseCard
@@ -908,45 +966,50 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              whileHover={{ scale: 1.02 }}
             >
-              <ExpertiseIcon>{item.icon}</ExpertiseIcon>
-              <ExpertiseTitle underlineColor={item.underline}>
-                {item.title}
-              </ExpertiseTitle>
+              <ExpertiseCardHead>
+                <ExpertiseIcon>
+                  {item.icon}
+                </ExpertiseIcon>
+                <ExpertiseTitle underlineColor={item.underline}>
+                  {item.title}
+                </ExpertiseTitle>
+              </ExpertiseCardHead>
               <ExpertiseDesc>{item.desc}</ExpertiseDesc>
             </ExpertiseCard>
           ))}
         </ExpertiseGrid>
       </Section>
 
-      <WorkSection id="work">
+      <WorkSection id="projects">
         <MyWorkWrapper>
           <MyWorkLeft>
-            <MyWorkTitle>My Work</MyWorkTitle>
+            <SectionTitle>PROJECTS</SectionTitle>
             <MyWorkDesc>
-              Deployed scalable travel, event and telemedicine web and hybrid mobile apps using React SPA and PWA.\nCollaborated in 140+ projects with 50+ clients all around the world. I am also interested in data analytics and visualization.
-            </MyWorkDesc>
+            Built a modular real estate rental platform using React, Next.js, Node.js, and TypeScript. Contributed to frontend, backend, and infrastructure.
+              <br />
+              Coordinated developers via Jira, structured technical scopes across four standalone products, and worked with AWS, SQL, and Elasticsearch to support over 1,500 active listings            </MyWorkDesc>
           </MyWorkLeft>
           <MyWorkRight>
-            <MyWorkMockup>
-              <img src="https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=400" alt="2Lar App" />
-            </MyWorkMockup>
-            <CurvedArrow viewBox="0 0 180 120">
-              <path d="M10 110 Q90 10 170 80" stroke="#7F5AF0" strokeWidth="5" fill="none" markerEnd="url(#arrowhead)" />
-              <defs>
-                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L0,10 L10,5 z" fill="#7F5AF0" />
-                </marker>
-              </defs>
-            </CurvedArrow>
-            <FeaturedBox>
-              <FeaturedLabel>Featured Project</FeaturedLabel>
-              <FeaturedName>2Lar</FeaturedName>
-              <FeaturedButton href="#" target="_blank">View Project</FeaturedButton>
-            </FeaturedBox>
+            <RotatingPhone3D/>
           </MyWorkRight>
         </MyWorkWrapper>
+          {/* <RotatingPhone>
+
+  <PhoneScreen>
+    <motion.img
+      src={carouselImages[currentImage]}
+      alt="2Lar Screen"
+      key={currentImage}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    />
+  </PhoneScreen>
+
+</RotatingPhone> */}
+
 
         <ProjectsGrid>
           {projects.map((project, idx) => (
@@ -971,7 +1034,7 @@ export default function Home() {
         </ProjectsGrid>
       </WorkSection>
 
-      <ExperienceSection id="experience">
+      <ExperienceSection id="work">
         <ExperienceContent>
           <SectionTitle
             initial={{ opacity: 0, y: 30 }}
@@ -981,7 +1044,7 @@ export default function Home() {
           >
             Professional Experience
           </SectionTitle>
-          
+
           <ExperienceList>
             {experienceData.map((exp, idx) => (
               <ExperienceItem
@@ -998,7 +1061,7 @@ export default function Home() {
                   <span>{exp.role} @ {exp.company}</span>
                   <span>{exp.period}</span>
                 </ExperienceButton>
-                
+
                 <AnimatePresence>
                   {openExperience === idx && (
                     <ExperienceContent2
@@ -1013,12 +1076,12 @@ export default function Home() {
                             <FaMapMarkerAlt style={{ opacity: 0.7 }} />
                             {exp.location}
                           </div>
-                          <a 
-                            href={exp.site} 
-                            target="_blank" 
+                          <a
+                            href={exp.site}
+                            target="_blank"
                             rel="noopener noreferrer"
-                            style={{ 
-                              color: '#b3b3b3', 
+                            style={{
+                              color: '#b3b3b3',
                               textDecoration: 'underline',
                               display: 'flex',
                               alignItems: 'center',
@@ -1049,10 +1112,7 @@ export default function Home() {
       </ExperienceSection>
 
       <Footer id="contact">
-        <ContactTitle>Contato</ContactTitle>
-        <ContactEmail href="mailto:renan.botasse@gmail.com">
-          renan.botasse@gmail.com
-        </ContactEmail>
+        <ContactTitle>Contact</ContactTitle>
         <SocialIcons>
           <SocialLink
             href="https://github.com/renanbotasse"
@@ -1071,7 +1131,7 @@ export default function Home() {
             <FaLinkedin />
           </SocialLink>
           <SocialLink
-            href="https://hackernoon.com/u/renanbotasse"
+            href="https://hackernoon.com/u/renanb"
             target="_blank"
             aria-label="Hackernoon"
             whileHover={{ scale: 1.1, y: -2 }}
@@ -1079,8 +1139,11 @@ export default function Home() {
             <FaHackerrank />
           </SocialLink>
         </SocialIcons>
+        <ContactEmail href="mailto:renanbotasse@gmail.com">
+          renanbotasse@gmail.com
+        </ContactEmail>
         <FooterNote>
-          © {new Date().getFullYear()} Renan Botasse. Todos os direitos reservados.
+          © {new Date().getFullYear()} Renan Botasse
         </FooterNote>
       </Footer>
     </Container>

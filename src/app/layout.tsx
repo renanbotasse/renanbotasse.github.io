@@ -3,8 +3,8 @@ import "./globals.css";
 import ThemeRegistry from "./ThemeRegistry";
 
 export const metadata: Metadata = {
-  title: "Renan Botasse - Fullstack Developer",
-  description: "Portfolio de Renan Botasse - Desenvolvedor Fullstack especializado em React, Node.js, TypeScript e AWS",
+  title: "Renan Botasse",
+  description: "Renan Botasse - Fullstack Developer",
 };
 
 export default function RootLayout({
