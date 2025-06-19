@@ -10,6 +10,10 @@ const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    width: 90vw;
+    overflow-x: hidden;
+  }
 `;
 
 const Header = styled(motion.header) <{ scrolled: boolean }>`
@@ -22,6 +26,10 @@ const Header = styled(motion.header) <{ scrolled: boolean }>`
   backdrop-filter: ${({ scrolled }) => scrolled ? 'blur(10px)' : 'none'};
   border-bottom: ${({ scrolled }) => scrolled ? '1px solid #333' : 'none'};
   transition: all 0.3s ease;
+  @media (max-width: 768px) {
+    width: 90vw;
+    overflow-x: hidden;
+  }
 `;
 
 const HeaderContent = styled.div`
@@ -357,6 +365,9 @@ const WorkSection = styled(Section)`
   background: black;
   max-width: none;
   padding: 100px 0;
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 const MyWorkWrapper = styled.div`
@@ -368,7 +379,7 @@ const MyWorkWrapper = styled.div`
   margin: 0 auto 100px auto;
   padding: 0 24px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     gap: 40px;
@@ -403,7 +414,7 @@ const MyWorkRight = styled.div`
   min-width: 420px;
   margin-left: 10px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     justify-content: center;
   }
 `;
@@ -416,6 +427,9 @@ const ProjectsGrid = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   justify-items: center;
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 const ProjectCard = styled(motion.div)`
@@ -428,6 +442,9 @@ const ProjectCard = styled(motion.div)`
   &:hover {
     transform: translateY(-20px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+  @media (max-width: 768px) {
+    width: 80vw;
   }
 `;
 
@@ -736,7 +753,67 @@ const experienceData = [
   },
 ];
 
+const MobileMenuOverlay = styled.div`
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(10, 14, 19, 0.98);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+  @media (min-width: 426px) {
+    display: none !important;
+  }
+`;
 
+const MobileMenuItem = styled.a`
+  color: #fff;
+  font-size: 2rem;
+  margin: 24px 0;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 2px;
+  transition: color 0.2s;
+  &:hover {
+    color: #03bfa6;
+  }
+`;
+
+const Hamburger = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+  z-index: 2100;
+
+  @media (max-width: 425px) {
+    display: block;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+  }
+`;
+const DesktopNav = styled.nav`
+  display: flex;
+  gap: 32px;
+
+  @media (max-width: 425px) {
+    display: none;
+  }
+`;
+
+const MobileNav = styled.nav`
+  display: none;
+
+  @media (max-width: 425px) {
+    display: block;
+  }
+`;
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -778,8 +855,7 @@ export default function Home() {
             Renan<Dot></Dot><Underscore>_</Underscore>
           </Logo>
 
-
-          <Nav>
+          <DesktopNav>
             {navItems.map((item) => (
               <NavItem
                 key={item.id}
@@ -791,31 +867,26 @@ export default function Home() {
                 {item.label}
               </NavItem>
             ))}
-          </Nav>
+          </DesktopNav>
 
-          <MobileMenuButton onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            ☰
-          </MobileMenuButton>
+          <MobileNav>
+            <Hamburger onClick={() => setMobileMenuOpen(true)} aria-label="Abrir menu">
+              <span style={{fontSize: '2.2rem', lineHeight: 1}}>&#9776;</span>
+            </Hamburger>
+            {mobileMenuOpen && (
+              <MobileMenuOverlay>
+                {navItems.map((item) => (
+                  <MobileMenuItem key={item.id} onClick={() => { setMobileMenuOpen(false); scrollToSection(item.id); }}>
+                    {item.label}
+                  </MobileMenuItem>
+                ))}
+                <MobileMenuItem as="button" style={{fontSize: '1.5rem', marginTop: 40, background: 'none', border: 'none', color: '#aaa'}} onClick={() => setMobileMenuOpen(false)}>
+                  Close
+                </MobileMenuItem>
+              </MobileMenuOverlay>
+            )}
+          </MobileNav>
         </HeaderContent>
-
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <MobileMenu
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              {navItems.map((item) => (
-                <MobileNavItem
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                >
-                  {item.label}
-                </MobileNavItem>
-              ))}
-            </MobileMenu>
-          )}
-        </AnimatePresence>
       </Header>
 
       <Hero id="home">
