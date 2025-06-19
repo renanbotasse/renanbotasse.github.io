@@ -11,7 +11,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   @media (max-width: 768px) {
-    width: 100vw;
+    width: 90vw;
     overflow-x: hidden;
   }
 `;
@@ -27,7 +27,7 @@ const Header = styled(motion.header) <{ scrolled: boolean }>`
   border-bottom: ${({ scrolled }) => scrolled ? '1px solid #333' : 'none'};
   transition: all 0.3s ease;
   @media (max-width: 768px) {
-    width: 100vw;
+    width: 90vw;
     overflow-x: hidden;
   }
 `;
@@ -303,7 +303,7 @@ const WorkSection = styled(Section)`
   max-width: none;
   padding: 100px 0;
   @media (max-width: 768px) {
-    width: 100vw;
+    width: 90vw;
   }
 `;
 
@@ -365,7 +365,7 @@ const ProjectsGrid = styled.div`
   margin: 0 auto;
   justify-items: center;
   @media (max-width: 768px) {
-    width: 100vw;
+    width: 90vw;
   }
 `;
 
