@@ -1,14 +1,13 @@
 "use client";
 import styled, { keyframes } from 'styled-components';
-import { FaCloudDownloadAlt, FaServer, FaMobileAlt, FaDatabase, FaTools, FaReact, FaFileAlt, FaArrowRight, FaMapMarkerAlt, FaExternalLinkAlt, FaBuilding, FaGithub, FaLinkedin, FaHackerrank, FaEnvelope } from 'react-icons/fa';
+import { FaCloudDownloadAlt, FaServer, FaMobileAlt, FaDatabase, FaReact, FaFileAlt, FaMapMarkerAlt, FaExternalLinkAlt, FaBuilding, FaGithub, FaLinkedin, FaHackerrank } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RotatingPhone3D } from '@/components/RotatingPhone';
+import { HeroVideoBackground } from '@/components/HeroVideoBackground';
 
 const Container = styled.div`
   min-height: 100vh;
-  background: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
   display: flex;
   flex-direction: column;
 `;
@@ -20,7 +19,6 @@ const Header = styled(motion.header) <{ scrolled: boolean }>`
   right: 0;
   z-index: 1000;
   padding: 20px 0;
-  background: ${({ scrolled, theme }) => scrolled ? `${theme.colors.background}ee` : 'transparent'};
   backdrop-filter: ${({ scrolled }) => scrolled ? 'blur(10px)' : 'none'};
   border-bottom: ${({ scrolled }) => scrolled ? '1px solid #333' : 'none'};
   transition: all 0.3s ease;
@@ -56,7 +54,7 @@ const Nav = styled.nav`
 const NavItem = styled(motion.button)`
   background: none;
   border: none;
-  color: ${({ theme }) => theme.colors.text};
+  color: white;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -67,7 +65,7 @@ const NavItem = styled(motion.button)`
   &::before {
     content: '/ ';
     font-size: 1.5rem;
-    color: ${({ theme }) => theme.colors.primary};
+    color: #03bfa6;
     margin-right: -14px;
   }
   
@@ -81,7 +79,7 @@ const NavItem = styled(motion.button)`
   }
   
   &:hover {
-    color: ${({ theme }) => theme.colors.primary};
+    color: #03bfa6;
   }
 `;
 
@@ -105,7 +103,7 @@ const MobileMenuButton = styled.button`
   display: none;
   background: none;
   border: none;
-  color: ${({ theme }) => theme.colors.text};
+  color: white;
   font-size: 1.5rem;
   cursor: pointer;
   
@@ -119,7 +117,7 @@ const MobileMenu = styled(motion.div)`
   top: 80px;
   left: 0;
   right: 0;
-  background: ${({ theme }) => theme.colors.background}f5;
+  background: black;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #333;
   padding: 20px 24px;
@@ -136,7 +134,7 @@ const MobileNavItem = styled.button`
   text-align: left;
   background: none;
   border: none;
-  color: ${({ theme }) => theme.colors.text};
+  color: white;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -145,12 +143,12 @@ const MobileNavItem = styled.button`
   
   &::before {
     content: '// ';
-    color: ${({ theme }) => theme.colors.primary};
+    color: #03bfa6;
     margin-right: 8px;
   }
   
   &:hover {
-    color: ${({ theme }) => theme.colors.primary};
+    color: #03bfa6;
   }
 `;
 
@@ -166,16 +164,16 @@ const Hero = styled.section`
   overflow: hidden;
 `;
 
-export const HeroVideoBackground = styled.video`
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  opacity: 0.3; /* ou ajuste conforme quiser */
-  pointer-events: none;
-`;
+// export const HeroVideoBackground = styled.video`
+//   position: absolute;
+//   inset: 0;
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+//   z-index: 0;
+//   opacity: 0.3; /* ou ajuste conforme quiser */
+//   pointer-events: none;
+// `;
 
 // const HeroBackground = styled.div`
 //   position: absolute;
@@ -202,7 +200,6 @@ const HeroName = styled(motion.h1)`
 const HeroTitle = styled(motion.h2)`
   font-size: clamp(1.2rem, 3vw, 1.8rem);
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.text};
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -219,11 +216,10 @@ interface TechProps {
   tech: keyof typeof techColors;
 }
 
-export const TechItem = styled.span<TechProps>`
+const TechItem = styled.span<TechProps>`
   cursor: default;
   padding: 0 0.25rem;
   transition: color 0.3s ease;
-  color: ${({ theme }) => theme.colors.primary}; // cor original
 
   &:hover {
     color: ${({ tech }) => techColors[tech]};
@@ -232,7 +228,7 @@ export const TechItem = styled.span<TechProps>`
 
 const HeroSubtitle = styled(motion.div)`
   font-size: clamp(1rem, 2.5vw, 1.3rem);
-  color: ${({ theme }) => theme.colors.primary};
+  color: #03bfa6;
   margin-bottom: 2rem;
   font-family: 'Fira Mono', monospace;
   font-weight: 500;
@@ -245,7 +241,7 @@ const ScrollIndicator = styled(motion.div)`
   transform: translateX(-50%);
   width: 2px;
   height: 60px;
-  background: linear-gradient(to bottom, ${({ theme }) => theme.colors.primary}, transparent);
+  background: linear-gradient(to bottom, #03bfa6, transparent);
   border-radius: 1px;
   
   &::after {
@@ -255,7 +251,7 @@ const ScrollIndicator = styled(motion.div)`
     left: -2px;
     width: 6px;
     height: 20px;
-    background: ${({ theme }) => theme.colors.primary};
+    background: #03bfa6;
     border-radius: 3px;
     animation: scroll 2s infinite;
   }
@@ -390,17 +386,6 @@ const MyWorkLeft = styled.div`
   margin-right: 80px;
 `;
 
-
-const MyWorkTitle = styled.h2`
-  font-size: 4rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 32px;
-  text-align: left;
-  line-height: 1;
-  font-family: 'DM Sans', monospace;
-`;
-
 const MyWorkDesc = styled.p`
   font-family: 'Fira Mono', monospace;
   font-size: 1.15rem;
@@ -478,7 +463,6 @@ const ProjectCardDesc = styled.p`
 
 const ProjectCardType = styled.span`
   font-size: 0.85rem;
-  color: ${({ theme }) => theme.colors.primary};
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -510,7 +494,7 @@ const ExperienceItem = styled(motion.div)`
 
 const ExperienceButton = styled.button<{ active: boolean }>`
   width: 100%;
-  background: ${({ active, theme }) => active ? theme.colors.secondary : '#23272f'};
+  background: ${({ active }) => active ? '#03bfa6' : '#23272f'};
   color: #fff;
   font-weight: 700;
   font-size: 1.2rem;
@@ -524,7 +508,7 @@ const ExperienceButton = styled.button<{ active: boolean }>`
   transition: all 0.3s ease;
   
   &:hover {
-    background: ${({ theme }) => theme.colors.primary};
+    background: #03bfa6;
   }
   
   @media (max-width: 768px) {
@@ -618,7 +602,7 @@ const ContactTitle = styled.h3`
 `;
 
 const ContactEmail = styled.a`
-  color: ${({ theme }) => theme.colors.primary};
+  color: #03bfa6;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -643,7 +627,7 @@ const SocialLink = styled(motion.a)`
   transition: color 0.3s ease;
   
   &:hover {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: #7e5bf0;
   }
 `;
 
@@ -693,97 +677,64 @@ const expertiseData =
     },
   ];
 
-  const projects = [
-    {
-      name: "Just To-Day",
-      desc: "Daily task list built with React. Editable blocks, color customization, and automatic rollover using browser cache.",
-      type: "React",
-      image: "/img/to-day.png",
-      link: "#",
-    },
-    {
-      name: "JobFlow",
-      desc: "Kanban board to manage job applications using React, with drag-and-drop and persistent data in localStorage.",
-      type: "React",
-      image: "/img/jobFlow.png",
-      link: "#",
-    },
-    {
-      name: "MyChain API",
-      desc: "Habit-tracking REST API built with NestJS, DDD, and PostgreSQL. Tracks user activity.",
-      type: "NestJS",
-      image: "/img/mychain.png",
-      link: "#",
-    }
-  ];
-  
-  
-
-  const experienceData = [
-    {
-      company: '2Lar',
-      role: 'Fullstack Developer - Mid',
-      period: '2024 - Now',
-      location: 'São Paulo, Brazil · Remote',
-      site: 'https://2lar.com.br',
-      description:
-        'From frontend to fullstack transition during platform rebuild. Worked with React, Node.js, microservices, AWS, and Elasticsearch across 4 modular products.',
-      tags: ['React', 'Node.js', 'TypeScript', 'AWS', 'Elasticsearch'],
-    },
-    {
-      company: 'Go Hike',
-      role: 'Mobile Developer - Junior',
-      period: '2023 - 2024',
-      location: 'Guimarães, Portugal · Remote',
-      site: 'https://gohike.com',
-      description:
-        'Built React Native app with Expo and NestJS API. Worked on authentication, event tracking, forms, and DDD-based architecture.',
-      tags: ['React Native', 'NestJS', 'TypeScript', 'PostgreSQL', 'DDD'],
-    },
-    {
-      company: 'FDTE',
-      role: 'Software Developer - Trainee',
-      period: '2023',
-      location: 'São Paulo, Brazil · Remote',
-      site: 'https://fdte.org.br',
-      description:
-        'Worked on BPMN-based systems and backend integrations. Modeled APIs with GraphQL, Postman, and contributed to e-commerce code reviews.',
-      tags: ['Node.js', 'GraphQL', 'Postman', 'BPMN', 'Confluence'],
-    },
-  ];
-  
-
-const RotatingPhone = styled.div`
-  width: 320px;
-  height: 600px;
-  border-radius: 36px;
-  background: #111;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  transform-style: preserve-3d;
-  animation: rotateY 10s linear infinite;
-
-  @keyframes rotateY {
-    from { transform: rotateY(0deg); }
-    to { transform: rotateY(360deg); }
+const projects = [
+  {
+    name: "Just To-Day",
+    desc: "Daily task list built with React. Editable blocks, color customization, and automatic rollover using browser cache.",
+    type: "React",
+    image: "/img/to-day.png",
+    link: "#",
+  },
+  {
+    name: "JobFlow",
+    desc: "Kanban board to manage job applications using React, with drag-and-drop and persistent data in localStorage.",
+    type: "React",
+    image: "/img/jobFlow.png",
+    link: "#",
+  },
+  {
+    name: "MyChain API",
+    desc: "Habit-tracking REST API built with NestJS, DDD, and PostgreSQL. Tracks user activity.",
+    type: "NestJS",
+    image: "/img/mychain.png",
+    link: "#",
   }
+];
 
-  @media (max-width: 600px) {
-    width: 220px;
-    height: 400px;
-  }
-`;
 
-const PhoneScreen = styled.div`
-  width: 100%;
-  height: 100%;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
 
+const experienceData = [
+  {
+    company: '2Lar',
+    role: 'Fullstack Developer - Mid',
+    period: '2024 - Now',
+    location: 'São Paulo, Brazil · Remote',
+    site: 'https://2lar.com.br',
+    description:
+      'From frontend to fullstack transition during platform rebuild. Worked with React, Node.js, microservices, AWS, and Elasticsearch across 4 modular products.',
+    tags: ['React', 'Node.js', 'TypeScript', 'AWS', 'Elasticsearch'],
+  },
+  {
+    company: 'Go Hike',
+    role: 'Mobile Developer - Junior',
+    period: '2023 - 2024',
+    location: 'Guimarães, Portugal · Remote',
+    site: 'https://gohike.com',
+    description:
+      'Built React Native app with Expo and NestJS API. Worked on authentication, event tracking, forms, and DDD-based architecture.',
+    tags: ['React Native', 'NestJS', 'TypeScript', 'PostgreSQL', 'DDD'],
+  },
+  {
+    company: 'FDTE',
+    role: 'Software Developer - Trainee',
+    period: '2023',
+    location: 'São Paulo, Brazil · Remote',
+    site: 'https://fdte.org.br',
+    description:
+      'Worked on BPMN-based systems and backend integrations. Modeled APIs with GraphQL, Postman, and contributed to e-commerce code reviews.',
+    tags: ['Node.js', 'GraphQL', 'Postman', 'BPMN', 'Confluence'],
+  },
+];
 
 
 export default function Home() {
@@ -813,43 +764,6 @@ export default function Home() {
     { id: 'projects', label: 'projects', number: '03' },
     { id: 'work', label: 'work', number: '04' },
   ];
-
-  const carouselImages = [
-    '/img/2lar-home.png',
-    '/img/2lar-filters.png',
-    '/img/2lar-property.png'
-  ];
-  
-  const [currentImage, setCurrentImage] = useState(0);
-  
-  const PhoneMockup = styled.div`
-  width: 320px;
-  height: 660px;
-  background-image: url('/img/iphone-mockup.png'); /* mockup com tela vazia */
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  transform: rotate(-20deg) skewY(-2deg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-`;
-
-const ScreenOverlay = styled.img`
-  position: absolute;
-  top: 50px;
-  left: 25px;
-  width: 270px;
-  height: 560px;
-  object-fit: cover;
-  border-radius: 24px;
-`;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % carouselImages.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-  
 
   return (
     <Container>
@@ -906,13 +820,7 @@ const ScreenOverlay = styled.img`
 
       <Hero id="home">
         {/* <HeroBackground /> */}
-        <HeroVideoBackground
-          autoPlay
-          muted
-          loop
-          playsInline
-          src="/vecteezy_polygon-cyberpunk-sci-fi-background_1807028.mp4"
-        />
+        <HeroVideoBackground />
         <HeroContent
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -967,7 +875,7 @@ const ScreenOverlay = styled.img`
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
             >
-              <ExpertiseCardHead>
+              <ExpertiseCardHead borderColor="#61DAFB">
                 <ExpertiseIcon>
                   {item.icon}
                 </ExpertiseIcon>
@@ -986,15 +894,15 @@ const ScreenOverlay = styled.img`
           <MyWorkLeft>
             <SectionTitle>PROJECTS</SectionTitle>
             <MyWorkDesc>
-            Built a modular real estate rental platform using React, Next.js, Node.js, and TypeScript. Contributed to frontend, backend, and infrastructure.
+              Built a modular real estate rental platform using React, Next.js, Node.js, and TypeScript. Contributed to frontend, backend, and infrastructure.
               <br />
               Coordinated developers via Jira, structured technical scopes across four standalone products, and worked with AWS, SQL, and Elasticsearch to support over 1,500 active listings            </MyWorkDesc>
           </MyWorkLeft>
           <MyWorkRight>
-            <RotatingPhone3D/>
+            <RotatingPhone3D />
           </MyWorkRight>
         </MyWorkWrapper>
-          {/* <RotatingPhone>
+        {/* <RotatingPhone>
 
   <PhoneScreen>
     <motion.img

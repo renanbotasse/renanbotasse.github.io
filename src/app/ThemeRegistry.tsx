@@ -23,16 +23,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.text};
+    background: black;
+    color: #c8d1d9;
     font-family: var(--font-geist-sans), var(--font-geist-mono), sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
   }
 
   ::selection {
-    background: ${({ theme }) => theme.colors.primary}33;
-    color: ${({ theme }) => theme.colors.primary};
+    background: red;
+    color: red;
   }
 
   ::-webkit-scrollbar {
@@ -44,12 +44,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.primary};
+    background: #03bfa6;
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.colors.secondary};
+    background: #03bfa6;
   }
 `;
 
