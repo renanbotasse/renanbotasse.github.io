@@ -1,24 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
-html {
-  scroll-behavior: smooth;
+@import "tailwindcss";
+
+/* ─── Design tokens ─────────────────────────────────── */
+@theme {
+  --color-bg:       #0c0c0e;
+  --color-surface:  #17171c;
+  --color-surface2: #1e1e25;
+  --color-border:   #26262f;
+  --color-border2:  #32323d;
+  --color-purple:   #bd93f9;
+  --color-red:      #ff5555;
+  --color-cyan:     #8be9fd;
+  --color-green:    #50fa7b;
+  --color-yellow:   #f1fa8c;
+  --color-muted:    #5a5a72;
+  --color-dim:      #3a3a4a;
+  --color-text:     #e8e8f0;
+  --color-text2:    #8a8aa8;
+  --font-display:   'Syne', sans-serif;
+  --font-mono:      'DM Mono', monospace;
 }
+
+/* ─── Base ──────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  background-color: #0c0c0e;
+  color: #e8e8f0;
+  font-family: 'DM Mono', monospace;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-@font-face {
-  font-family: 'DM Sans';
-  src: url('/fonts/DMSans-VariableFont.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+::selection { background: rgba(189,147,249,0.25); color: #e8e8f0; }
 
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #0c0c0e; }
+::-webkit-scrollbar-thumb { background: #26262f; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #bd93f9; }
 
-*, *::before, *::after {
-  box-sizing: inherit;
+/* ─── Organic shapes (from hybrid mockups) ──────────── */
+.organic-1 { border-radius: 60% 40% 70% 30% / 40% 50% 60% 40%; }
+.organic-2 { border-radius: 40% 60% 30% 70% / 50% 40% 30% 60%; }
+.organic-3 { border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%; }
+.hand-drawn { border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; }
+
+/* ─── Card hover — projects (translateY + purple top border) */
+.card-project {
+  position: relative;
+  transition: transform 0.28s ease, border-color 0.28s ease, background-color 0.28s ease;
+  overflow: hidden;
 }
+.card-project::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, #bd93f9, transparent);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  border-radius: 12px 12px 0 0;
+}
+.card-project:hover::before   { opacity: 1; }
+.card-project:hover           { transform: translateY(-2px); border-color: #32323d; background-color: #1e1e25; }
+
+/* ─── Card hover — notes (translateX + left purple bar) */
+.card-note {
+  position: relative;
+  transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+  overflow: hidden;
+}
+.card-note::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: #bd93f9;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.25s ease;
+  border-radius: 2px 0 0 2px;
+}
+.card-note:hover::before { transform: scaleY(1); }
+.card-note:hover         { transform: translateX(4px); border-color: #32323d; background-color: #1e1e25; }
+
+/* ─── Nav link underline ────────────────────────────── */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: #bd93f9;
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+.nav-link:hover::after  { transform: scaleX(1); }
+.nav-link.active::after { transform: scaleX(1); }
+
+/* ─── Entrance animation ────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-up { animation: fadeUp 0.6s ease both; }
