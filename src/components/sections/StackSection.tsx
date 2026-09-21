@@ -1,102 +1,174 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaReact, FaNodeJs, FaAws, FaDocker, FaMobileAlt } from "react-icons/fa";
-import { SiTypescript, SiNextdotjs, SiNestjs, SiPostgresql, SiMongodb, SiGithubactions, SiTailwindcss, SiThreedotjs, SiJest, SiStorybook, SiPostman } from "react-icons/si";
+import type { IconType } from "react-icons";
+import {
+  FaAws,
+  FaDocker,
+  FaNodeJs,
+  FaPython,
+  FaReact,
+} from "react-icons/fa";
+import {
+  SiCelery,
+  SiDjango,
+  SiElasticsearch,
+  SiExpo,
+  SiGithubactions,
+  SiGraphql,
+  SiJest,
+  SiMongodb,
+  SiNextdotjs,
+  SiNestjs,
+  SiPostgresql,
+  SiPostman,
+  SiRedis,
+  SiStorybook,
+  SiSwagger,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
+import { TbBrandReactNative, TbBrain, TbExternalLink } from "react-icons/tb";
+import { MdSecurity } from "react-icons/md";
+import { HiOutlineDocumentText } from "react-icons/hi";
+import { useLocale } from "@/i18n/LocaleProvider";
 
-const groups: { label: string; iconColor: string; items: { icon: React.ReactNode; name: string }[] }[] = [
-  {
-    label: "frontend",
-    iconColor: "#bd93f9",
-    items: [
-      { icon: <FaReact size={18} />,        name: "React" },
-      { icon: <SiNextdotjs size={18} />,    name: "Next.js" },
-      { icon: <SiTypescript size={18} />,   name: "TypeScript" },
-      { icon: <FaMobileAlt size={18} />,    name: "React Native" },
-      { icon: <SiTailwindcss size={18} />,  name: "TailwindCSS" },
-      { icon: <SiThreedotjs size={18} />,   name: "Three.js" },
-    ],
-  },
-  {
-    label: "backend",
-    iconColor: "#ff5555",
-    items: [
-      { icon: <FaNodeJs size={18} />,     name: "Node.js" },
-      { icon: <SiNestjs size={18} />,     name: "NestJS" },
-      { icon: <SiPostgresql size={18} />, name: "PostgreSQL" },
-      { icon: <SiMongodb size={18} />,    name: "MongoDB" },
-    ],
-  },
-  {
-    label: "infra & tooling",
-    iconColor: "#8be9fd",
-    items: [
-      { icon: <FaAws size={18} />,           name: "AWS" },
-      { icon: <FaDocker size={18} />,        name: "Docker" },
-      { icon: <SiGithubactions size={18} />, name: "Git / CI" },
-      { icon: <SiJest size={18} />,          name: "Jest" },
-      { icon: <SiStorybook size={18} />,     name: "Storybook" },
-      { icon: <SiPostman size={18} />,       name: "Postman" },
-    ],
-  },
-];
+const iconMap: Record<string, IconType> = {
+  python: FaPython,
+  django: SiDjango,
+  typescript: SiTypescript,
+  nodejs: FaNodeJs,
+  nestjs: SiNestjs,
+  graphql: SiGraphql,
+  swagger: SiSwagger,
+  postman: SiPostman,
+  postgresql: SiPostgresql,
+  mongodb: SiMongodb,
+  redis: SiRedis,
+  celery: SiCelery,
+  elasticsearch: SiElasticsearch,
+  aws: FaAws,
+  docker: FaDocker,
+  githubactions: SiGithubactions,
+  react: FaReact,
+  nextjs: SiNextdotjs,
+  reactnative: TbBrandReactNative,
+  expo: SiExpo,
+  tailwind: SiTailwindcss,
+  storybook: SiStorybook,
+  jest: SiJest,
+  oauth: MdSecurity,
+  apicontracts: HiOutlineDocumentText,
+  ai: TbBrain,
+};
 
 export default function StackSection() {
+  const { t } = useLocale();
+  const { stack } = t;
+
   return (
-    <section style={{ padding: "80px 0" }}>
-      <div className="mx-auto px-7" style={{ maxWidth: 740 }}>
-
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-          style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.18em", color: "#bd93f9", textTransform: "uppercase", marginBottom: 24 }}>
-          {'// tools & technologies'}
-        </motion.div>
-
-        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.1 }}
-          style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(48px, 8vw, 88px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.95, color: "#e8e8f0" }}>
-          Stack<span style={{ color: "#ff5555" }}>.</span>
-        </motion.h2>
-
-        <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }}
-          style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "#8a8aa8", lineHeight: 1.8, maxWidth: 540, marginTop: 24, marginBottom: 56 }}>
-          Tools I reach for — and why. <em style={{ color: "#bd93f9", fontStyle: "normal" }}>Stack isn&apos;t skill.</em>{" "}
-          What matters is <strong style={{ color: "#e8e8f0", fontWeight: 500 }}>decision criteria under real constraints.</strong>
+    <section className="px-5 pt-20 pb-24 sm:px-8">
+      <div className="mx-auto max-w-[880px]">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mb-3 text-[12px] tracking-wide text-coral uppercase"
+        >
+          {stack.eyebrow}
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.06 }}
+          className="font-display mb-4 text-[clamp(36px,6vw,52px)] font-medium leading-[1.08] tracking-tight text-text"
+        >
+          {stack.title}
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.12 }}
+          className="mb-4 max-w-xl text-[16px] leading-relaxed text-muted"
+        >
+          {stack.subtitle}
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: 0.16 }}
+          className="mb-14 text-[13px] text-dim"
+        >
+          {stack.hint}
         </motion.p>
 
-        {groups.map((group, gi) => (
-          <motion.div key={group.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: gi * 0.1 }} style={{ marginBottom: 48 }}>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a5a72", marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ color: "#bd93f9" }}>{"//"}</span>{group.label}
-            </div>
-            <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
-              {group.items.map((item) => (
-                <div key={item.name}
-                  style={{ border: "1px solid #26262f", borderRadius: 10, padding: "16px 18px", background: "#17171c", display: "flex", alignItems: "center", gap: 12, transition: "border-color 0.25s, transform 0.25s, background 0.25s", cursor: "default" }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#32323d"; e.currentTarget.style.background = "#1e1e25"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#26262f"; e.currentTarget.style.background = "#17171c"; e.currentTarget.style.transform = "translateY(0)"; }}
-                >
-                  <div style={{ width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", background: "#1e1e25", flexShrink: 0, color: group.iconColor }}>
-                    {item.icon}
-                  </div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: "#e8e8f0", letterSpacing: "-0.01em", fontFamily: "'Syne', sans-serif" }}>{item.name}</div>
+        <div className="space-y-14">
+          {stack.groups.map((group, gi) => (
+            <motion.div
+              key={group.label}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: gi * 0.05 }}
+            >
+              <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <h2
+                    className="font-display text-[24px] font-medium tracking-tight"
+                    style={{ color: group.accent }}
+                  >
+                    {group.label}
+                  </h2>
+                  <p className="mt-1 max-w-md text-[14px] text-muted">{group.blurb}</p>
                 </div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+              </div>
 
-        {/* Note block */}
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-          style={{ borderLeft: "2px solid #bd93f9", borderRadius: "0 10px 10px 0", padding: "24px 28px", background: "#17171c", marginTop: 8 }}>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "#8a8aa8", lineHeight: 1.8 }}>
-            <strong style={{ color: "#e8e8f0", fontWeight: 500 }}>On stack choices:</strong> I don&apos;t have a preferred framework religion.
-            Each tool above exists because it solved a real problem in a real context —
-            MongoDB because an event schema was unstable, AWS because the team needed cloud without a specialist,
-            Three.js because a product needed 3D in the browser.
-            The tool follows the constraint, not the other way around.
-          </p>
-        </motion.div>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                {group.items.map((item) => {
+                  const Icon = iconMap[item.iconKey] ?? HiOutlineDocumentText;
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${item.name}: ${item.tooltip}. Opens documentation.`}
+                      className="stack-tile group relative block rounded-2xl border border-border bg-surface/80 p-4 no-underline sm:p-5"
+                    >
+                      <span className="stack-tooltip pointer-events-none absolute bottom-[calc(100%+10px)] left-1/2 z-20 w-[min(240px,70vw)] -translate-x-1/2 rounded-xl border border-border px-3 py-2.5 text-[12px] leading-snug opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+                        {item.tooltip}
+                        <span className="mt-1.5 flex items-center gap-1 text-[11px] opacity-70">
+                          <TbExternalLink size={12} />
+                          {stack.openDocs}
+                        </span>
+                        <span
+                          className="stack-tooltip-arrow absolute top-full left-1/2 -mt-px h-2 w-2 -translate-x-1/2 rotate-45 border-r border-b"
+                          aria-hidden
+                        />
+                      </span>
 
-        <div style={{ height: 32 }} />
+                      <div className="mb-3 flex items-start justify-between gap-2">
+                        <div
+                          className="flex h-10 w-10 items-center justify-center rounded-xl"
+                          style={{ background: `${item.color}18`, color: item.color }}
+                        >
+                          <Icon size={20} />
+                        </div>
+                        <TbExternalLink
+                          size={14}
+                          className="mt-1 text-dim opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+                          aria-hidden
+                        />
+                      </div>
+                      <div className="text-[14px] font-medium text-text">{item.name}</div>
+                      <div className="mt-1 text-[12px] leading-snug text-dim">{item.note}</div>
+                    </a>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
