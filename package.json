@@ -16,6 +16,7 @@
     "@react-three/fiber": "^9.1.2",
     "babel-plugin-styled-components": "^2.1.4",
     "framer-motion": "^12.18.1",
+    "geist": "^1.7.2",
     "next": "^16.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
