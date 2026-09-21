@@ -1,152 +1,179 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLocale } from "@/i18n/LocaleProvider";
+import type { Dictionary } from "@/i18n";
 
-const articles = [
-  {
-    title: "ArtemisFlow: A Local-First Job Tracker I Built",
-    desc: "Why I built a local-first CRM for job applications instead of using a spreadsheet — and what that taught me about ownership and product thinking.",
-    meta: "personal project · local-first · Feb 2026",
-    pinned: true,
-    draft: false,
-    url: "https://hackernoon.com/u/renanb",
-    bgImage: "",
-    accentColor: "rgba(189,147,249,0.08)",
-  },
-  {
-    title: "MongoDB — A Practical Guide for Beginners and Experts Alike",
-    desc: "A hands-on guide to MongoDB — from data modeling basics to practical patterns for real projects.",
-    meta: "database · MongoDB · Jan 2025",
-    pinned: false,
-    draft: false,
-    url: "https://hackernoon.com/u/renanb",
-    bgImage: "",
-    accentColor: "rgba(80,250,123,0.06)",
-  },
-  {
-    title: "NestJS and Best Practices",
-    desc: "Modular architecture, dependency injection, and the patterns that make NestJS projects maintainable at scale.",
-    meta: "backend · NestJS · Jul 2024",
-    pinned: false,
-    draft: false,
-    url: "https://hackernoon.com/u/renanb",
-    bgImage: "",
-    accentColor: "rgba(255,85,85,0.06)",
-  },
-  {
-    title: "Comments: The Good, the Bad and the Ugly",
-    desc: "When comments help, when they hide bad code, and how to write the kind that actually earns their place in a codebase.",
-    meta: "clean code · engineering · Apr 2024",
-    pinned: false,
-    draft: false,
-    url: "https://hackernoon.com/u/renanb",
-    bgImage: "",
-    accentColor: "rgba(241,250,140,0.06)",
-  },
-  {
-    title: "Your Junior Dev Survival Guide to Managing Branches, Commits and PRs",
-    desc: "Git workflow for developers who want to stop breaking things and start collaborating properly.",
-    meta: "git · workflow · Feb 2024",
-    pinned: false,
-    draft: false,
-    url: "https://hackernoon.com/u/renanb",
-    bgImage: "",
-    accentColor: "rgba(139,233,253,0.06)",
-  },
-  {
-    title: "Google Sign-In and Expo Go: A Guide to Fix Any Issues That Arise",
-    desc: "Every integration issue I ran into setting up Google Auth with Expo — and how I solved each one.",
-    meta: "React Native · Expo · Dec 2023",
-    pinned: false,
-    draft: false,
-    url: "https://hackernoon.com/u/renanb",
-    bgImage: "",
-    accentColor: "rgba(139,233,253,0.06)",
-  },
-];
+type Article = Dictionary["notes"]["articles"][number];
 
-export default function WritingSection() {
+function FeaturedCard({
+  article,
+  featuredLabel,
+  readMoreLabel,
+}: {
+  article: Article;
+  featuredLabel: string;
+  readMoreLabel: string;
+}) {
   return (
-    <section style={{ padding: "80px 0" }}>
-      <div className="mx-auto px-7" style={{ maxWidth: 740 }}>
-
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-          style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.18em", color: "#bd93f9", textTransform: "uppercase", marginBottom: 24 }}>
-          {'// thinking out loud'}
-        </motion.div>
-
-        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.1 }}
-          style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(48px, 8vw, 88px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.95, color: "#e8e8f0" }}>
-          Notes<span style={{ color: "#ff5555" }}>.</span>
-        </motion.h2>
-
-        <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }}
-          style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "#8a8aa8", lineHeight: 1.8, maxWidth: 500, marginTop: 20, marginBottom: 32 }}>
-          Writing about frontend, architecture, and the decisions that matter.
-          Mechanism over buzzword. Trade-off over trend.
-        </motion.p>
-
-        <div className="flex flex-col gap-2">
-          {articles.map((article, i) => (
-            <motion.a
-              key={article.title}
-              href={article.draft ? undefined : article.url}
-              target={article.draft ? undefined : "_blank"}
-              rel={article.draft ? undefined : "noopener noreferrer"}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
-              className="card-note"
-              style={{
-                border: `1px solid ${article.pinned ? "rgba(189,147,249,0.3)" : "#26262f"}`,
-                borderRadius: 12,
-                background: "#17171c",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: 20,
-                textDecoration: "none",
-                opacity: article.draft ? 0.5 : 1,
-                pointerEvents: article.draft ? "none" : "auto",
-                position: "relative",
-                overflow: "hidden",
-                minHeight: 100,
-              }}
-            >
-              {/* Diagonal bg — right half, image goes here */}
-              <div style={{
-                position: "absolute",
-                top: 0, right: 0, bottom: 0,
-                width: "55%",
-                background: article.bgImage
-                  ? `url(${article.bgImage}) center/cover no-repeat`
-                  : article.accentColor,
-                opacity: article.bgImage ? 0.08 : 1,
-                clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
-                pointerEvents: "none",
-              }} />
-
-              {/* Content */}
-              <div style={{ flex: 1, padding: "24px 28px", position: "relative", zIndex: 1 }}>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#bd93f9", letterSpacing: "-0.01em", marginBottom: 6, fontFamily: "'Syne', sans-serif" }}>
-                  {article.title}
-                </div>
-                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: "#8a8aa8", lineHeight: 1.65, marginBottom: 10 }}>{article.desc}</div>
-                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#3a3a4a", letterSpacing: "0.06em" }}>{article.meta}</div>
-              </div>
-
-              {/* Arrow */}
-              {!article.draft && (
-                <div style={{ position: "absolute", right: 20, top: "50%", transform: "translateY(-50%)", fontSize: 14, color: "#3a3a4a", zIndex: 1, transition: "color 0.2s, transform 0.2s" }}>↗</div>
-              )}
-              {article.draft && (
-                <div style={{ position: "absolute", top: 16, right: 16, fontFamily: "'DM Mono', monospace", fontSize: 10, padding: "2px 8px", borderRadius: 4, background: "#1e1e25", border: "1px solid #32323d", color: "#5a5a72", letterSpacing: "0.1em", zIndex: 1 }}>draft</div>
-              )}
-            </motion.a>
-          ))}
+    <motion.a
+      href={article.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, delay: 0.16 }}
+      className="card-note group mb-8 block overflow-hidden rounded-2xl border border-border bg-surface no-underline"
+      style={{ borderTopWidth: 4, borderTopColor: article.accent }}
+    >
+      <div className="grid min-h-[280px] sm:min-h-[320px] sm:grid-cols-2">
+        <div className="relative z-10 flex flex-col justify-between p-7 sm:p-9">
+          <div>
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+              <span
+                className="rounded-full px-2.5 py-0.5 text-[12px] tracking-wide"
+                style={{ color: article.accent, background: `${article.accent}18` }}
+              >
+                {featuredLabel}
+              </span>
+              <span className="text-[13px] text-dim">{article.date}</span>
+            </div>
+            <h2 className="font-display mb-4 text-[clamp(22px,3.5vw,32px)] font-medium leading-snug tracking-tight text-text">
+              {article.title}
+            </h2>
+            <p className="mb-6 text-[15px] leading-relaxed text-muted sm:text-[16px]">
+              {article.desc}
+            </p>
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-[13px] text-dim">{article.meta}</span>
+            <span className="text-[14px] font-medium" style={{ color: article.accent }}>
+              {readMoreLabel}
+            </span>
+          </div>
         </div>
 
-        <div style={{ height: 32 }} />
+        <div className="relative min-h-[180px] overflow-hidden sm:min-h-full">
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-[1.04]"
+            style={{ backgroundImage: `url(${article.image})` }}
+            role="img"
+            aria-label={article.imageAlt}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(90deg, var(--color-surface) 0%, transparent 28%), linear-gradient(0deg, ${article.accent}22, transparent 45%)`,
+            }}
+          />
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+function ArticleCard({ article, index }: { article: Article; index: number }) {
+  return (
+    <motion.a
+      href={article.draft ? undefined : article.url}
+      target={article.draft ? undefined : "_blank"}
+      rel={article.draft ? undefined : "noopener noreferrer"}
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className={`card-note group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface no-underline ${
+        article.draft ? "pointer-events-none opacity-50" : ""
+      }`}
+      style={{ borderLeftWidth: 4, borderLeftColor: article.accent }}
+    >
+      <div className="relative h-40 overflow-hidden sm:h-44">
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-[1.05]"
+          style={{ backgroundImage: `url(${article.image})` }}
+          role="img"
+          aria-label={article.imageAlt}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(180deg, transparent 35%, var(--color-surface) 100%), linear-gradient(135deg, ${article.accent}33, transparent 55%)`,
+          }}
+        />
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+          <span className="rounded-full bg-surface/90 px-2.5 py-0.5 text-[11px] tracking-wide text-dim uppercase backdrop-blur-sm">
+            {String(index + 2).padStart(2, "0")}
+          </span>
+          <span className="rounded-full bg-surface/90 px-2.5 py-0.5 text-[11px] text-dim backdrop-blur-sm">
+            {article.date}
+          </span>
+        </div>
+      </div>
+
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <h2 className="font-display mb-3 text-[18px] font-medium leading-snug tracking-tight text-text">
+          {article.title}
+        </h2>
+        <p className="mb-5 flex-1 text-[14px] leading-relaxed text-muted">{article.desc}</p>
+        <div className="flex items-center justify-between gap-3 border-t border-border/80 pt-4">
+          <span className="text-[12px] text-dim">{article.meta}</span>
+          {!article.draft && (
+            <span className="text-[13px]" style={{ color: article.accent }}>
+              ↗
+            </span>
+          )}
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+export default function WritingSection() {
+  const { t } = useLocale();
+  const { notes } = t;
+  const [featured, ...rest] = notes.articles;
+
+  return (
+    <section className="px-5 pt-20 pb-24 sm:px-8">
+      <div className="mx-auto max-w-[880px]">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mb-3 text-[12px] tracking-wide text-coral uppercase"
+        >
+          {notes.eyebrow}
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.06 }}
+          className="font-display mb-4 text-[clamp(36px,6vw,52px)] font-medium leading-[1.08] tracking-tight text-text"
+        >
+          {notes.title}
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.12 }}
+          className="mb-12 max-w-lg text-[16px] leading-relaxed text-muted"
+        >
+          {notes.subtitle}
+        </motion.p>
+
+        <FeaturedCard
+          article={featured}
+          featuredLabel={notes.featured}
+          readMoreLabel={notes.readMore}
+        />
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {rest.map((article, i) => (
+            <ArticleCard key={article.title} article={article} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );

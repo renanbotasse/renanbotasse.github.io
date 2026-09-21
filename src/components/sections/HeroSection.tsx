@@ -1,94 +1,87 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export default function HeroSection() {
+  const { t } = useLocale();
+  const { hero } = t;
+
   return (
-    <section style={{ padding: "130px 0 80px" }}>
-      <div className="mx-auto px-7" style={{ maxWidth: 740 }}>
-
-        {/* Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.18em", color: "#bd93f9", textTransform: "uppercase", marginBottom: 24 }}
-        >
-          {'// renan botasse'}
-        </motion.div>
-
-        {/* Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.25 }}
-          style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(48px, 8vw, 88px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.95, color: "#e8e8f0" }}
-        >
-          Frontend<br />
-          Engineer<span style={{ color: "#ff5555" }}>.</span>
-        </motion.h1>
-
-        {/* Sub */}
+    <section className="px-5 pt-24 pb-20 sm:px-8">
+      <div className="mx-auto max-w-[880px]">
         <motion.p
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.4 }}
-          style={{ fontFamily: "'DM Mono', monospace", fontSize: 15, color: "#8a8aa8", lineHeight: 1.75, maxWidth: 480, marginTop: 24 }}
+          transition={{ duration: 0.45 }}
+          className="mb-6 text-[13px] tracking-wide text-coral"
         >
-          I build <strong style={{ color: "#e8e8f0", fontWeight: 500 }}>with React, Next.js and TypeScript.</strong><br />
-          Enough backend context to make decisions that don&apos;t come back to bite
-          Node.js, NestJS and AWS.
+          {hero.availability}
         </motion.p>
 
-        {/* Chips */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
+        <motion.h1
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.55 }}
-          className="flex flex-wrap gap-2"
-          style={{ marginTop: 28 }}
+          transition={{ duration: 0.5, delay: 0.06 }}
+          className="font-display text-[clamp(42px,7vw,68px)] leading-[1.05] font-medium tracking-tight text-text"
         >
-          {["React / Next.js", "TypeScript", "Node.js / NestJS"].map((label) => (
-            <span
-              key={label}
-              style={{
-                fontFamily: "'DM Mono', monospace", fontSize: 11,
-                padding: "5px 14px", borderRadius: 20,
-                border: "1px solid #32323d", color: "#8a8aa8",
-                letterSpacing: "0.06em", display: "inline-block",
-              }}
-            >
-              {label}
-            </span>
-          ))}
-        </motion.div>
+          Renan Botasse
+        </motion.h1>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.7 }}
-          className="flex flex-wrap items-center gap-4"
-          style={{ marginTop: 32 }}
+          transition={{ duration: 0.5, delay: 0.14 }}
+          className="mt-3 font-display text-[clamp(22px,3.5vw,30px)] leading-snug text-indigo italic"
+        >
+          {hero.role}
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.22 }}
+          className="mt-6 max-w-[36rem] text-[17px] leading-[1.7] text-muted"
+        >
+          {hero.body}
+        </motion.p>
+
+        <motion.dl
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-12 grid gap-3 sm:grid-cols-2"
+        >
+          {hero.specs.map((row) => (
+            <div
+              key={row.key}
+              className="rounded-2xl border border-border bg-surface px-5 py-4"
+            >
+              <dt className="mb-1 text-[11px] tracking-wide text-coral uppercase">{row.key}</dt>
+              <dd className="text-[15px] text-text">{row.value}</dd>
+            </div>
+          ))}
+        </motion.dl>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.38 }}
+          className="mt-10 flex flex-wrap items-center gap-5"
         >
           <a
             href="mailto:renanbotasse@gmail.com"
-            style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.1em", padding: "10px 22px", borderRadius: 6, backgroundColor: "#bd93f9", color: "#0c0c0e", fontWeight: 500, textDecoration: "none", transition: "all 0.25s", display: "inline-block" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#caa8ff"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "#bd93f9"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+            className="inline-flex items-center rounded-full bg-indigo px-6 py-3 text-[14px] text-surface no-underline transition-opacity hover:opacity-90"
           >
-            get in touch
+            {hero.cta}
           </a>
           <a
             href="/about"
-            style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.1em", padding: "10px 22px", borderRadius: 6, border: "1px solid #32323d", color: "#8a8aa8", textDecoration: "none", transition: "all 0.25s", display: "inline-block" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#bd93f9"; (e.currentTarget as HTMLElement).style.color = "#bd93f9"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#32323d"; (e.currentTarget as HTMLElement).style.color = "#8a8aa8"; }}
+            className="text-[14px] text-muted no-underline underline-offset-4 transition-colors hover:text-coral hover:underline"
           >
-            about me →
+            {hero.about}
           </a>
         </motion.div>
-
       </div>
     </section>
   );
