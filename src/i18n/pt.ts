@@ -2,7 +2,7 @@ import type { Dictionary } from "./types";
 
 export const pt: Dictionary = {
   meta: {
-    title: "Renan Botasse — Engenheiro de Software Full-Stack",
+    title: "Renan Botasse, Engenheiro de Software Full-Stack",
     description:
       "Engenheiro de Software Full-Stack com mais de 5 anos de experiência em APIs backend, React/Next.js, React Native, Python/Django, TypeScript e AWS.",
   },
@@ -14,9 +14,8 @@ export const pt: Dictionary = {
     contact: "Contacto",
   },
   hero: {
-    availability: "Disponível para consultoria e conversas de engenharia",
     role: "Engenheiro de Software Full-Stack",
-    body: "Mais de 5 anos a entregar sistemas de ponta a ponta — APIs backend, schemas e contratos, autenticação, processamento assíncrono e entrega em AWS — actualmente em produtos fintech através da PrimeIT com a Revenya.",
+    body: "Mais de 5 anos a entregar sistemas de ponta a ponta, de APIs backend, schemas e contratos a autenticação, processamento assíncrono e entrega em AWS. Actualmente em produtos fintech através da PrimeIT com a Revenya.",
     specs: [
       { key: "Função", value: "Full-stack · APIs · entrega" },
       { key: "Stack", value: "Python/Django · TypeScript/React · AWS" },
@@ -29,7 +28,6 @@ export const pt: Dictionary = {
   work: {
     eyebrow: "Trabalho seleccionado",
     title: "Casos de engenharia",
-    subtitle: "Trabalho em produção enquadrado como arquitectura e entrega — não listas de funcionalidades.",
     sideEyebrow: "Ferramentas open-source",
     sideSubtitle: "Security tooling, career ops e scanners que publico abertamente.",
     architecture: "Arquitectura",
@@ -66,7 +64,7 @@ export const pt: Dictionary = {
           "GitHub Actions",
         ],
         summary:
-          "Entrega full-stack em fintech através da PrimeIT — ownership substancial da API backend, documentação, autenticação, fluxos assíncronos e pipelines de deploy em AWS.",
+          "Entrega full-stack em fintech através da PrimeIT, com ownership substancial da API backend, documentação, autenticação, fluxos assíncronos e pipelines de deploy em AWS.",
         highlights: [
           {
             k: "API",
@@ -167,7 +165,7 @@ export const pt: Dictionary = {
           "Swagger",
         ],
         summary:
-          "Funcionalidades mobile com TypeScript, autenticação OAuth e APIs NestJS — formulários, controlo de acesso, testes e documentação Swagger.",
+          "Funcionalidades mobile com TypeScript, autenticação OAuth e APIs NestJS, incluindo formulários, controlo de acesso, testes e documentação Swagger.",
         highlights: [
           {
             k: "Mobile",
@@ -212,7 +210,7 @@ export const pt: Dictionary = {
           "SOA",
         ],
         summary:
-          "Integrações backend, contratos de API, testes e documentação em sistemas orientados a serviços — incluindo modelação de workflows com BPMN e FlowBuild.",
+          "Integrações backend, contratos de API, testes e documentação em sistemas orientados a serviços, incluindo modelação de workflows com BPMN e FlowBuild.",
         highlights: [
           {
             k: "Contratos",
@@ -255,7 +253,7 @@ export const pt: Dictionary = {
           "CSS",
         ],
         summary:
-          "Liderei trabalho de direito laboral para empresas com 1.000+ colaboradores e depois construí os CRMs interno e de clientes do escritório — a ponte da prática jurídica para software full-stack.",
+          "Liderei trabalho de direito laboral para empresas com 1.000+ colaboradores e depois construí os CRMs interno e de clientes do escritório, que fizeram a ponte da prática jurídica para software full-stack.",
         highlights: [
           {
             k: "Direito",
@@ -267,7 +265,7 @@ export const pt: Dictionary = {
           },
           {
             k: "Transferência",
-            v: "Traduzi regras de negócio e requisitos de stakeholders em workflows de software; configurei hosting e deploy básicos — hábitos que ainda moldam a forma como entrego produto.",
+            v: "Traduzi regras de negócio e requisitos de stakeholders em workflows de software; configurei hosting e deploy básicos, hábitos que ainda moldam a forma como entrego produto.",
           },
         ],
       },
@@ -301,7 +299,7 @@ export const pt: Dictionary = {
         label: "API security",
         name: "SpineAPI",
         accent: "#C9A227",
-        desc: "Auditor defensivo de postura de segurança em APIs — encontra defaults fracos antes dos atacantes.",
+        desc: "Auditor defensivo de postura de segurança em APIs que encontra defaults fracos antes dos atacantes.",
         url: "https://github.com/renanbotasse/SpineAPI",
         stack: ["Python"],
       },
@@ -317,7 +315,7 @@ export const pt: Dictionary = {
         label: "Análise estática",
         name: "sBOMBPath",
         accent: "#C45C3E",
-        desc: "Analisador de caminhos exploráveis em Python — de taint sources a sinks vulneráveis.",
+        desc: "Analisador de caminhos exploráveis em Python, dos taint sources aos sinks vulneráveis.",
         url: "https://github.com/renanbotasse/sBOMBPath",
         stack: ["Python"],
       },
@@ -326,7 +324,7 @@ export const pt: Dictionary = {
   capabilities: {
     eyebrow: "Capacidades",
     title: "Domínios técnicos",
-    subtitle: "Áreas nucleares que assumo de ponta a ponta — de contratos e filas a clientes e deploys.",
+    subtitle: "Áreas nucleares que assumo de ponta a ponta, de contratos e filas a clientes e deploys.",
     domains: [
       {
         id: "backend",
@@ -353,7 +351,7 @@ export const pt: Dictionary = {
       {
         id: "infra",
         label: "Cloud e entrega",
-        summary: "Entregar, verificar, reverter — paridade Docker local até pipelines de produção em AWS.",
+        summary: "Entregar, verificar e reverter, da paridade Docker local aos pipelines de produção em AWS.",
         items: [
           { name: "AWS", note: "S3, SQS, Secrets Manager, ECS, RDS, IAM" },
           { name: "Docker", note: "Serviços locais, builds reproduzíveis" },
@@ -378,12 +376,12 @@ export const pt: Dictionary = {
     eyebrow: "Sobre",
     introLead: "Full-Stack Software Developer com",
     introYears: "mais de 5 anos",
-    introTail: "de experiência profissional — de trabalho focado em frontend até entrega de ponta a ponta.",
+    introTail: "de experiência profissional, de trabalho focado em frontend até entrega de ponta a ponta.",
     p1: "Actualmente a trabalhar através da PrimeIT com a Revenya em produtos fintech, com responsabilidade prática por uma parte substancial da API backend, schemas e contratos, documentação Swagger e Postman, autenticação, webhooks, idempotência, audit logging, processamento assíncrono e workflows de entrega em AWS.",
-    p2: "Experiência com Python/Django, TypeScript/Node.js, SQL, Celery, Redis, Docker e GitHub Actions. Uso Cursor e Claude diariamente em workflows estruturados assistidos por IA — Spec-Driven Development, context engineering e decomposição controlada de tarefas por agentes, com revisão humana.",
+    p2: "Experiência com Python/Django, TypeScript/Node.js, SQL, Celery, Redis, Docker e GitHub Actions. Uso Cursor e Claude diariamente em workflows estruturados assistidos por IA, incluindo Spec-Driven Development, context engineering e decomposição controlada de tarefas por agentes, com revisão humana.",
     quote:
-      "Percurso em direito laboral para empresas com 1.000+ colaboradores — análise de risco, raciocínio baseado em evidências, desenho de processos e comunicação com stakeholders. Esse hábito de tornar decisões defensáveis ainda molda a forma como entrego software.",
-    quoteFooter: "— prática anterior · Santos & Botasse Advogados",
+      "Não tenho dogmas nem ideias fixas. Desenvolver não é só programar, é entender como, quando e porquê. Toda decisão depende do contexto, e o meu trabalho é saber em qual deles estou.",
+    quoteFooter: "A ideia por trás do “it depends” de Kent Beck",
     timelineEyebrow: "Percurso",
     principlesEyebrow: "Como trabalho",
     educationEyebrow: "Formação",
@@ -429,7 +427,7 @@ export const pt: Dictionary = {
       {
         num: "01",
         title: "Decidir antes de construir",
-        text: "Mapear trade-offs, impacto no modelo de dados e conflitos de regras de negócio antes do primeiro commit — e documentar as conclusões para revisão.",
+        text: "Mapear trade-offs, impacto no modelo de dados e conflitos de regras de negócio antes do primeiro commit, e documentar as conclusões para revisão.",
       },
       {
         num: "02",
@@ -439,7 +437,7 @@ export const pt: Dictionary = {
       {
         num: "03",
         title: "Assumir o ciclo de entrega",
-        text: "Da descoberta à revisão de PR, verificação de deploy e rollback — entregar inclui o pipeline, não só a funcionalidade.",
+        text: "Da descoberta à revisão de PR, verificação de deploy e rollback, porque entregar inclui o pipeline, não só a funcionalidade.",
       },
       {
         num: "04",
@@ -448,17 +446,17 @@ export const pt: Dictionary = {
       },
     ],
     education: [
-      { title: "Lic. Engenharia Informática — Universidade Aberta", period: "2024–2029 · em curso" },
-      { title: "Programação — 42 Porto", period: "2022–2023" },
-      { title: "Pós-graduação em Direito do Trabalho — Estácio", period: "2016–2017" },
-      { title: "Licenciatura em Direito — UNESC", period: "2010–2015" },
+      { title: "Lic. Engenharia Informática, Universidade Aberta", period: "2024–2029 · em curso" },
+      { title: "Programação, 42 Porto", period: "2022–2023" },
+      { title: "Pós-graduação em Direito do Trabalho, Estácio", period: "2016–2017" },
+      { title: "Licenciatura em Direito, UNESC", period: "2010–2015" },
     ],
   },
   stack: {
     eyebrow: "Stack",
     title: "Ferramentas com motivo",
     subtitle:
-      "Cada ferramenta ganhou o seu lugar face a uma restrição real — schemas instáveis, falta de ownership na cloud ou pressão de entrega. Não é uma wishlist.",
+      "Cada ferramenta ganhou o seu lugar face a uma restrição real, como schemas instáveis, falta de ownership na cloud ou pressão de entrega. Não é uma wishlist.",
     hint: "Passe o rato para uma nota curta · clique para abrir a documentação oficial",
     openDocs: "Abrir docs",
     groups: [
@@ -536,7 +534,7 @@ export const pt: Dictionary = {
       {
         label: "Dados e async",
         accent: "#2F6B4F",
-        blurb: "Stores e filas escolhidos para o domínio — não pela moda.",
+        blurb: "Stores e filas escolhidos para o domínio, não pela moda.",
         items: [
           {
             name: "PostgreSQL",
@@ -565,7 +563,7 @@ export const pt: Dictionary = {
           {
             name: "Celery",
             note: "Jobs em background",
-            tooltip: "Fila de tarefas distribuída para Python — jobs async, retries e schedules.",
+            tooltip: "Fila de tarefas distribuída para Python, para jobs async, retries e schedules.",
             href: "https://docs.celeryq.dev/",
             iconKey: "celery",
             color: "#37814A",
@@ -583,7 +581,7 @@ export const pt: Dictionary = {
       {
         label: "Cloud e entrega",
         accent: "#C45C3E",
-        blurb: "Do Docker local à produção AWS — incluindo caminhos de rollback.",
+        blurb: "Do Docker local à produção AWS, incluindo caminhos de rollback.",
         items: [
           {
             name: "AWS",
@@ -677,7 +675,7 @@ export const pt: Dictionary = {
       {
         label: "Segurança e workflows de IA",
         accent: "#1F5A63",
-        blurb: "Padrões de auth em produção — e agentes de IA com revisão humana.",
+        blurb: "Padrões de auth em produção, e agentes de IA com revisão humana.",
         items: [
           {
             name: "OAuth2 / JWT",
@@ -698,7 +696,7 @@ export const pt: Dictionary = {
           {
             name: "AI-assisted",
             note: "Cursor · Spec-Driven · revisão",
-            tooltip: "Desenvolvimento Spec-Driven com Cursor/Claude — agentes ajudam, humanos reveem.",
+            tooltip: "Desenvolvimento Spec-Driven com Cursor/Claude, agentes ajudam, humanos reveem.",
             href: "https://cursor.com/docs",
             iconKey: "ai",
             color: "#2F6B4F",
@@ -710,33 +708,43 @@ export const pt: Dictionary = {
   notes: {
     eyebrow: "Notas",
     title: "Escrita sobre o trabalho",
-    subtitle:
-      "Arquitectura, tooling e as decisões que sobrevivem ao contacto com produção — publicadas no HackerNoon e noutros sítios.",
     featured: "Destaque",
     readMore: "Ler no HackerNoon →",
     articles: [
       {
-        title: "ArtemisFlow: A Local-First Job Tracker I Built",
-        desc: "Porque construí um CRM local-first para candidaturas em vez de usar uma spreadsheet — e o que isso me ensinou sobre ownership e pensamento de produto.",
-        meta: "Projecto pessoal · local-first",
-        date: "Fev 2026",
+        title: "From Theory to Practice: Three Small Tools for Big Security Problems",
+        desc: "Como três ferramentas pequenas e focadas transformam a teoria de segurança em prática, publicadas em open-source e feitas para expor problemas reais cedo.",
+        meta: "Segurança · ferramentas open-source",
+        date: "2026",
         pinned: true,
         draft: false,
-        accent: "#1F5A63",
-        image: "/notes/note-artemis.jpg",
-        imageAlt: "Secretária com portátil a mostrar um dashboard de candidaturas",
+        accent: "#D90000",
+        image: "/notes/note-security-tools.jpg",
+        imageAlt: "Imagem de capa de From Theory to Practice: Three Small Tools for Big Security Problems",
         url: "https://hackernoon.com/u/renanb",
       },
       {
-        title: "MongoDB — A Practical Guide for Beginners and Experts Alike",
-        desc: "Um guia prático de MongoDB — das bases de modelação de dados a padrões úteis para projectos reais.",
+        title: "ArtemisFlow: A Local-First Job Tracker I Built",
+        desc: "Porque construí um CRM local-first para candidaturas em vez de usar uma spreadsheet, e o que isso me ensinou sobre ownership e pensamento de produto.",
+        meta: "Projecto pessoal · local-first",
+        date: "Fev 2026",
+        pinned: false,
+        draft: false,
+        accent: "#1F5A63",
+        image: "/notes/note-artemis-hn.jpg",
+        imageAlt: "Imagem de capa de ArtemisFlow: A Local-First Job Tracker I Built",
+        url: "https://hackernoon.com/u/renanb",
+      },
+      {
+        title: "MongoDB, A Practical Guide for Beginners and Experts Alike",
+        desc: "Um guia prático de MongoDB, das bases de modelação de dados a padrões úteis para projectos reais.",
         meta: "Base de dados · MongoDB",
         date: "Jan 2025",
         pinned: false,
         draft: false,
         accent: "#2F6B4F",
-        image: "/notes/note-mongodb.jpg",
-        imageAlt: "Nós abstractos verdes de base documental e formas de vidro",
+        image: "/notes/note-mongodb-hn.png",
+        imageAlt: "Imagem de capa de MongoDB, A Practical Guide for Beginners and Experts Alike",
         url: "https://hackernoon.com/u/renanb",
       },
       {
@@ -747,8 +755,8 @@ export const pt: Dictionary = {
         pinned: false,
         draft: false,
         accent: "#C45C3E",
-        image: "/notes/note-nestjs.jpg",
-        imageAlt: "Blocos arquitectónicos modulares a sugerir a estrutura NestJS",
+        image: "/notes/note-nestjs-hn.jpg",
+        imageAlt: "Imagem de capa de NestJS and Best Practices",
         url: "https://hackernoon.com/u/renanb",
       },
       {
@@ -759,8 +767,8 @@ export const pt: Dictionary = {
         pinned: false,
         draft: false,
         accent: "#C9A227",
-        image: "/notes/note-comments.jpg",
-        imageAlt: "Notas manuscritas sobre páginas de código impressas",
+        image: "/notes/note-comments-hn.jpg",
+        imageAlt: "Imagem de capa de Comments: The Good, the Bad and the Ugly",
         url: "https://hackernoon.com/u/renanb",
       },
       {
@@ -771,20 +779,20 @@ export const pt: Dictionary = {
         pinned: false,
         draft: false,
         accent: "#1F5A63",
-        image: "/notes/note-git.jpg",
-        imageAlt: "Ramos de árvore a bifurcar como branches git contra um céu azul",
+        image: "/notes/note-git-hn.jpg",
+        imageAlt: "Imagem de capa de Your Junior Dev Survival Guide to Managing Branches, Commits and PRs",
         url: "https://hackernoon.com/u/renanb",
       },
       {
         title: "Google Sign-In and Expo Go: A Guide to Fix Any Issues That Arise",
-        desc: "Todos os problemas de integração que encontrei ao configurar Google Auth com Expo — e como resolvi cada um.",
+        desc: "Todos os problemas de integração que encontrei ao configurar Google Auth com Expo, e como resolvi cada um.",
         meta: "React Native · Expo",
         date: "Dez 2023",
         pinned: false,
         draft: false,
         accent: "#2F6B4F",
-        image: "/notes/note-expo-auth.jpg",
-        imageAlt: "Smartphone com um brilho suave de ecrã de autenticação",
+        image: "/notes/note-expo-auth-hn.jpg",
+        imageAlt: "Imagem de capa de Google Sign-In and Expo Go: A Guide to Fix Any Issues That Arise",
         url: "https://hackernoon.com/u/renanb",
       },
     ],
