@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" fill="#131211"/>
+  <!-- Eclipse: thin red corona around the initials -->
+  <circle cx="32" cy="32" r="27" stroke="#ff4a3d" stroke-width="2.5"/>
+  <!-- RB, drawn as strokes so no font is needed -->
+  <g stroke="#f2efe8" stroke-width="3.6" stroke-linejoin="miter" stroke-linecap="butt">
+    <path d="M16 45V19H24Q29 19 29 25.5Q29 32 24 32H16M24 32L29 45"/>
+    <path d="M36 19H43Q48 19 48 25Q48 31 43 31H36M43 31Q49 31 49 38Q49 45 43 45H36V19"/>
+  </g>
+  <!-- Red square: the site's recurring mark, sitting below the initials -->
+  <rect x="29.5" y="50.5" width="5" height="5" fill="#ff4a3d"/>
+</svg>

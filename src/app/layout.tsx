@@ -1,17 +1,25 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Newsreader, Source_Sans_3 } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
+import SmoothScroll from "@/components/ui/SmoothScroll";
 import ContactSection from "@/components/sections/ContactSection";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
 import { ThemeProvider } from "@/i18n/ThemeProvider";
 
-const display = Newsreader({
+const display = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  style: ["normal", "italic"],
+  weight: ["500", "700"],
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  weight: ["400", "700"],
 });
 
 const body = Source_Sans_3({
@@ -21,9 +29,16 @@ const body = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Renan Botasse — Full-Stack Software Engineer",
+  title: "Renan Botasse, Full-Stack Software Engineer",
   description:
     "Full-Stack Software Engineer with 5+ years of experience across backend APIs, React/Next.js, React Native, Python/Django, TypeScript and AWS.",
+  openGraph: {
+    title: "Renan Botasse, Full-Stack Software Engineer",
+    description:
+      "Backend APIs, React/Next.js, React Native, Python/Django, TypeScript and AWS.",
+    type: "website",
+  },
+  twitter: { card: "summary" },
 };
 
 /** Apply theme + lang before paint to avoid flash; defaults: light + en */
@@ -51,16 +66,16 @@ const bootScript = `
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-theme="light" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="light" className={`${display.variable} ${mono.variable} ${body.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <Script id="prefs-boot" strategy="beforeInteractive">
           {bootScript}
         </Script>
         <ThemeProvider>
           <LocaleProvider>
-            <div className="pointer-events-none fixed inset-0 z-0 bg-paper" aria-hidden />
+            <SmoothScroll />
             <Navbar />
-            <main className="relative z-[1] pt-14">{children}</main>
+            <main className="relative z-[1] pt-16">{children}</main>
             <ContactSection />
           </LocaleProvider>
         </ThemeProvider>
