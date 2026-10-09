@@ -23,7 +23,6 @@ export type Dictionary = {
   meta: { title: string; description: string };
   nav: { work: string; about: string; stack: string; notes: string; contact: string };
   hero: {
-    availability: string;
     role: string;
     body: string;
     specs: { key: string; value: string }[];
@@ -33,7 +32,6 @@ export type Dictionary = {
   work: {
     eyebrow: string;
     title: string;
-    subtitle: string;
     sideEyebrow: string;
     sideSubtitle: string;
     architecture: string;
@@ -91,7 +89,6 @@ export type Dictionary = {
   notes: {
     eyebrow: string;
     title: string;
-    subtitle: string;
     featured: string;
     readMore: string;
     articles: {

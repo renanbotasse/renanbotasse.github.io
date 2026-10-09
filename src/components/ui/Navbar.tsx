@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import { useLocale } from "@/i18n/LocaleProvider";
 import PreferenceControls from "@/components/ui/PreferenceControls";
 
+/** Fixed opaque top bar with thick bottom rule; full-screen menu on mobile. */
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,86 +20,71 @@ export default function Navbar() {
   ];
 
   const isActive = (href: string) =>
-    pathname === href || (href === "/work" && pathname === "/");
+    pathname.startsWith(href) || (href === "/work" && pathname === "/");
 
   return (
     <>
-      <header className="fixed top-0 right-0 left-0 z-50 flex h-14 items-center justify-between border-b border-border/80 bg-bg/90 px-5 backdrop-blur-sm sm:px-8">
+      <header className="fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between border-b-2 border-line bg-bg px-5 sm:px-8">
         <Link
           href="/work"
-          className="font-display text-[17px] tracking-tight text-text no-underline transition-colors duration-200 hover:text-coral"
+          className="h-display text-[20px] text-ink no-underline hover:text-red"
         >
-          Renan Botasse
+          Renan Botasse<span className="text-red">_</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-2 md:flex" aria-label="Main">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`nav-link text-[13px] tracking-wide no-underline transition-colors duration-200 ${
-                isActive(item.href) ? "active text-text" : "text-muted hover:text-text"
-              }`}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={`nav-link ${isActive(item.href) ? "active" : "text-ink"}`}
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-3">
           <PreferenceControls />
-          <a
-            href="mailto:renanbotasse@gmail.com"
-            className="hidden text-[13px] text-muted no-underline transition-colors hover:text-coral md:inline"
-          >
+          <a href="mailto:renanbotasse@gmail.com" className="brut-btn hidden lg:inline-flex">
             {t.nav.contact}
           </a>
-
           <button
             onClick={() => setMenuOpen((open) => !open)}
-            className="cursor-pointer p-2 text-muted md:hidden"
+            className="cursor-pointer border-2 border-line px-3 py-1.5 font-mono text-[12px] font-bold uppercase md:hidden"
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
-            <div className="w-5 space-y-[5px]">
-              <span className={`block h-px bg-current transition-all duration-300 ${menuOpen ? "translate-y-[6px] rotate-45" : ""}`} />
-              <span className={`block h-px bg-current transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-              <span className={`block h-px bg-current transition-all duration-300 ${menuOpen ? "-translate-y-[6px] -rotate-45" : ""}`} />
-            </div>
+            {menuOpen ? "Close" : "Menu"}
           </button>
         </div>
       </header>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-bg md:hidden"
-          >
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                className={`font-display text-3xl tracking-tight no-underline ${
-                  isActive(item.href) ? "text-indigo" : "text-text"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <a
-              href="mailto:renanbotasse@gmail.com"
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col justify-center gap-2 bg-bg px-5 pt-16 md:hidden">
+          {navItems.map((item, i) => (
+            <Link
+              key={item.href}
+              href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="text-[15px] text-muted no-underline"
+              className={`h-display border-b-2 border-line py-3 text-[44px] leading-none no-underline ${
+                isActive(item.href) ? "text-red" : "text-ink"
+              }`}
             >
-              {t.nav.contact}
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <span className="label mr-3 align-middle text-dim">0{i + 1}</span>
+              {item.label}
+            </Link>
+          ))}
+          <a
+            href="mailto:renanbotasse@gmail.com"
+            onClick={() => setMenuOpen(false)}
+            className="brut-btn mt-6 self-start"
+          >
+            {t.nav.contact}
+          </a>
+        </div>
+      )}
     </>
   );
 }
